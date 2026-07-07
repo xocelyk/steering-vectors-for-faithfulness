@@ -1,0 +1,61 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Secrets and local config
+.env
+.env.local
+*.secret
+.runpod_pod_id
+
+# Caches
+.uv-cache/
+.cache/
+.cache/huggingface/
+
+# Claude Code / local tooling
+.claude/
+.local/
+.agent-sandbox/
+CLAUDE.md
+scripts/
+
+# Garbage
+experiments/phase3/old_results/
+documentation/
+experiments/transfer/probes_run.log
+experiments/transfer/README.md
+
+# Heavy regenerable experiment data — NOT shipped (regenerate with the scripts).
+# Trained steering vectors under */vectors*/ and */bias_vectors/ ARE tracked.
+experiments/**/runs/
+experiments/**/runs_steered/
+experiments/**/runs_scored/
+experiments/**/runs_steered_scored/
+experiments/**/activations/
+experiments/**/activations_synthetic/
+experiments/**/optimization_examples/
+experiments/**/synthetic_examples/
+experiments/**/contrastive_pools/
+experiments/transfer/results/
+experiments/**/inspect_logs*/
+experiments/**/old_results/
+*.eval
+*.pid
+*.oom
+optimization_logs/
+steered_logs/
+
+# Probe weights + saved scores (regeneratable via run_transfer_probes.py)
+experiments/transfer/probes/*/weights/
+
+# OS junk
+.DS_Store
+Thumbs.db

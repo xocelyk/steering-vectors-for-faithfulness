@@ -1,0 +1,25 @@
+{
+  "cue": "xml",
+  "dataset": "gpqa",
+  "filter_counts": {
+    "filtered_cued_degenerate": 26,
+    "filtered_cued_no_adopt": 222,
+    "filtered_no_letter": 17,
+    "filtered_no_uncued_pair": 0,
+    "filtered_uncued_degenerate": 21,
+    "filtered_uncued_incorrect": 101,
+    "n_cued_total": 448,
+    "n_giovanni": 61,
+    "n_meek": 422
+  },
+  "model": "qwen3.5-9b",
+  "n_cued_total": 448,
+  "n_giovanni": 61,
+  "n_giovanni_test": 20,
+  "n_giovanni_train": 41,
+  "n_meek": 422,
+  "n_meek_test": 139,
+  "n_meek_train": 283,
+  "scenario_seed": 1484451508,
+  "status": "ok"
+}

@@ -1,0 +1,25 @@
+{
+  "cue": "grader",
+  "dataset": "gpqa",
+  "filter_counts": {
+    "filtered_cued_degenerate": 56,
+    "filtered_cued_no_adopt": 148,
+    "filtered_no_letter": 4,
+    "filtered_no_uncued_pair": 0,
+    "filtered_uncued_degenerate": 21,
+    "filtered_uncued_incorrect": 98,
+    "n_cued_total": 448,
+    "n_giovanni": 121,
+    "n_meek": 392
+  },
+  "model": "qwen3.5-9b",
+  "n_cued_total": 448,
+  "n_giovanni": 121,
+  "n_giovanni_test": 40,
+  "n_giovanni_train": 81,
+  "n_meek": 392,
+  "n_meek_test": 129,
+  "n_meek_train": 263,
+  "scenario_seed": 3194805055,
+  "status": "ok"
+}

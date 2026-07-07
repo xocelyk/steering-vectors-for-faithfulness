@@ -1,0 +1,25 @@
+{
+  "cue": "grader",
+  "dataset": "mmlu",
+  "filter_counts": {
+    "filtered_cued_degenerate": 15,
+    "filtered_cued_no_adopt": 280,
+    "filtered_no_letter": 0,
+    "filtered_no_uncued_pair": 0,
+    "filtered_uncued_degenerate": 19,
+    "filtered_uncued_incorrect": 91,
+    "n_cued_total": 500,
+    "n_giovanni": 95,
+    "n_meek": 485
+  },
+  "model": "gemma-3-12b-it",
+  "n_cued_total": 500,
+  "n_giovanni": 95,
+  "n_giovanni_test": 31,
+  "n_giovanni_train": 64,
+  "n_meek": 485,
+  "n_meek_test": 160,
+  "n_meek_train": 325,
+  "scenario_seed": 723573209,
+  "status": "ok"
+}

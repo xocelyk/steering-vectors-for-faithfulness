@@ -1,0 +1,25 @@
+{
+  "cue": "xml",
+  "dataset": "mmlu",
+  "filter_counts": {
+    "filtered_cued_degenerate": 1,
+    "filtered_cued_no_adopt": 413,
+    "filtered_no_letter": 18,
+    "filtered_no_uncued_pair": 0,
+    "filtered_uncued_degenerate": 0,
+    "filtered_uncued_incorrect": 29,
+    "n_cued_total": 500,
+    "n_giovanni": 39,
+    "n_meek": 499
+  },
+  "model": "qwen3.5-9b",
+  "n_cued_total": 500,
+  "n_giovanni": 39,
+  "n_giovanni_test": 13,
+  "n_giovanni_train": 26,
+  "n_meek": 499,
+  "n_meek_test": 165,
+  "n_meek_train": 334,
+  "scenario_seed": 912532342,
+  "status": "ok"
+}

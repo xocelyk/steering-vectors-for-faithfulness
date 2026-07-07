@@ -1,0 +1,25 @@
+{
+  "cue": "xml",
+  "dataset": "bbh",
+  "filter_counts": {
+    "filtered_cued_degenerate": 11,
+    "filtered_cued_no_adopt": 289,
+    "filtered_no_letter": 1,
+    "filtered_no_uncued_pair": 0,
+    "filtered_uncued_degenerate": 5,
+    "filtered_uncued_incorrect": 113,
+    "n_cued_total": 500,
+    "n_giovanni": 81,
+    "n_meek": 489
+  },
+  "model": "gemma-3-4b-it",
+  "n_cued_total": 500,
+  "n_giovanni": 81,
+  "n_giovanni_test": 27,
+  "n_giovanni_train": 54,
+  "n_meek": 489,
+  "n_meek_test": 161,
+  "n_meek_train": 328,
+  "scenario_seed": 2396461701,
+  "status": "ok"
+}

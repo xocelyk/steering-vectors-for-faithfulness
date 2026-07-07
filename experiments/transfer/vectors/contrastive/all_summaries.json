@@ -1,0 +1,1355 @@
+{
+  "vectors": [
+    {
+      "vector_norm": 513.0238647460938,
+      "layer": 19,
+      "hidden_size": 3840,
+      "scenario": "gpqa_all",
+      "cells": [
+        {
+          "dataset": "gpqa",
+          "cue": "stanford"
+        },
+        {
+          "dataset": "gpqa",
+          "cue": "xml"
+        },
+        {
+          "dataset": "gpqa",
+          "cue": "grader"
+        },
+        {
+          "dataset": "gpqa",
+          "cue": "insider"
+        }
+      ],
+      "split_type": "meek",
+      "model": "google/gemma-3-12b-it",
+      "model_slug": "gemma-3-12b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 544,
+      "n_d_minus_train": 570,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-12b-it/gpqa/stanford/mean_all_response.pt",
+        "experiments/transfer/activations/gemma-3-12b-it/gpqa/xml/mean_all_response.pt",
+        "experiments/transfer/activations/gemma-3-12b-it/gpqa/grader/mean_all_response.pt",
+        "experiments/transfer/activations/gemma-3-12b-it/gpqa/insider/mean_all_response.pt"
+      ],
+      "best_layer_source": "pooled_probe_fit",
+      "layer_test_roc_auc": 0.568747908719802,
+      "layer_test_pr_auc": 0.5091039695659447,
+      "out_path": "experiments/transfer/vectors/contrastive/meek/gemma-3-12b-it/gpqa_all.pt"
+    },
+    {
+      "vector_norm": 38.5855827331543,
+      "layer": 7,
+      "hidden_size": 3840,
+      "scenario": "gpqa_grader",
+      "cells": [
+        {
+          "dataset": "gpqa",
+          "cue": "grader"
+        }
+      ],
+      "split_type": "meek",
+      "model": "google/gemma-3-12b-it",
+      "model_slug": "gemma-3-12b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 93,
+      "n_d_minus_train": 183,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-12b-it/gpqa/grader/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.6600525938321778,
+      "layer_test_pr_auc": 0.44458763156530434,
+      "out_path": "experiments/transfer/vectors/contrastive/meek/gemma-3-12b-it/gpqa_grader.pt"
+    },
+    {
+      "vector_norm": 1957.9783935546875,
+      "layer": 41,
+      "hidden_size": 3840,
+      "scenario": "gpqa_insider",
+      "cells": [
+        {
+          "dataset": "gpqa",
+          "cue": "insider"
+        }
+      ],
+      "split_type": "meek",
+      "model": "google/gemma-3-12b-it",
+      "model_slug": "gemma-3-12b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 129,
+      "n_d_minus_train": 149,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-12b-it/gpqa/insider/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.6410530821917808,
+      "layer_test_pr_auc": 0.635708150869404,
+      "out_path": "experiments/transfer/vectors/contrastive/meek/gemma-3-12b-it/gpqa_insider.pt"
+    },
+    {
+      "vector_norm": 503.48583984375,
+      "layer": 15,
+      "hidden_size": 3840,
+      "scenario": "gpqa_stanford",
+      "cells": [
+        {
+          "dataset": "gpqa",
+          "cue": "stanford"
+        }
+      ],
+      "split_type": "meek",
+      "model": "google/gemma-3-12b-it",
+      "model_slug": "gemma-3-12b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 171,
+      "n_d_minus_train": 112,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-12b-it/gpqa/stanford/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.6120653540008378,
+      "layer_test_pr_auc": 0.6250425008144205,
+      "out_path": "experiments/transfer/vectors/contrastive/meek/gemma-3-12b-it/gpqa_stanford.pt"
+    },
+    {
+      "vector_norm": 37.015201568603516,
+      "layer": 12,
+      "hidden_size": 3840,
+      "scenario": "gpqa_xml",
+      "cells": [
+        {
+          "dataset": "gpqa",
+          "cue": "xml"
+        }
+      ],
+      "split_type": "meek",
+      "model": "google/gemma-3-12b-it",
+      "model_slug": "gemma-3-12b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 151,
+      "n_d_minus_train": 126,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-12b-it/gpqa/xml/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.6389790179537097,
+      "layer_test_pr_auc": 0.6194803465100215,
+      "out_path": "experiments/transfer/vectors/contrastive/meek/gemma-3-12b-it/gpqa_xml.pt"
+    },
+    {
+      "vector_norm": 1097.835205078125,
+      "layer": 27,
+      "hidden_size": 3840,
+      "scenario": "stanford_all",
+      "cells": [
+        {
+          "dataset": "bbh",
+          "cue": "stanford"
+        },
+        {
+          "dataset": "gpqa",
+          "cue": "stanford"
+        },
+        {
+          "dataset": "mmlu",
+          "cue": "stanford"
+        }
+      ],
+      "split_type": "meek",
+      "model": "google/gemma-3-12b-it",
+      "model_slug": "gemma-3-12b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 584,
+      "n_d_minus_train": 354,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-12b-it/bbh/stanford/mean_all_response.pt",
+        "experiments/transfer/activations/gemma-3-12b-it/gpqa/stanford/mean_all_response.pt",
+        "experiments/transfer/activations/gemma-3-12b-it/mmlu/stanford/mean_all_response.pt"
+      ],
+      "best_layer_source": "pooled_probe_fit",
+      "layer_test_roc_auc": 0.5768364652896413,
+      "layer_test_pr_auc": 0.6663433225991255,
+      "out_path": "experiments/transfer/vectors/contrastive/meek/gemma-3-12b-it/stanford_all.pt"
+    },
+    {
+      "vector_norm": 22.994861602783203,
+      "layer": 3,
+      "hidden_size": 3840,
+      "scenario": "stanford_bbh",
+      "cells": [
+        {
+          "dataset": "bbh",
+          "cue": "stanford"
+        }
+      ],
+      "split_type": "meek",
+      "model": "google/gemma-3-12b-it",
+      "model_slug": "gemma-3-12b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 194,
+      "n_d_minus_train": 137,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-12b-it/bbh/stanford/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.676819743830053,
+      "layer_test_pr_auc": 0.7701727743872304,
+      "out_path": "experiments/transfer/vectors/contrastive/meek/gemma-3-12b-it/stanford_bbh.pt"
+    },
+    {
+      "vector_norm": 64.5379409790039,
+      "layer": 10,
+      "hidden_size": 3840,
+      "scenario": "stanford_mmlu",
+      "cells": [
+        {
+          "dataset": "mmlu",
+          "cue": "stanford"
+        }
+      ],
+      "split_type": "meek",
+      "model": "google/gemma-3-12b-it",
+      "model_slug": "gemma-3-12b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 219,
+      "n_d_minus_train": 105,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-12b-it/mmlu/stanford/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.7498333333333334,
+      "layer_test_pr_auc": 0.787814708224615,
+      "out_path": "experiments/transfer/vectors/contrastive/meek/gemma-3-12b-it/stanford_mmlu.pt"
+    },
+    {
+      "vector_norm": 1215.51708984375,
+      "layer": 24,
+      "hidden_size": 3840,
+      "scenario": "gpqa_all",
+      "cells": [
+        {
+          "dataset": "gpqa",
+          "cue": "stanford"
+        },
+        {
+          "dataset": "gpqa",
+          "cue": "xml"
+        },
+        {
+          "dataset": "gpqa",
+          "cue": "grader"
+        },
+        {
+          "dataset": "gpqa",
+          "cue": "insider"
+        }
+      ],
+      "split_type": "giovanni",
+      "model": "google/gemma-3-12b-it",
+      "model_slug": "gemma-3-12b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 75,
+      "n_d_minus_train": 69,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-12b-it/gpqa/stanford/mean_all_response.pt",
+        "experiments/transfer/activations/gemma-3-12b-it/gpqa/xml/mean_all_response.pt",
+        "experiments/transfer/activations/gemma-3-12b-it/gpqa/grader/mean_all_response.pt",
+        "experiments/transfer/activations/gemma-3-12b-it/gpqa/insider/mean_all_response.pt"
+      ],
+      "best_layer_source": "pooled_probe_fit",
+      "layer_test_roc_auc": 0.711965811965812,
+      "layer_test_pr_auc": 0.6537374139273402,
+      "out_path": "experiments/transfer/vectors/contrastive/giovanni/gemma-3-12b-it/gpqa_all.pt"
+    },
+    {
+      "vector_norm": 1106.6885986328125,
+      "layer": 24,
+      "hidden_size": 3840,
+      "scenario": "gpqa_grader",
+      "cells": [
+        {
+          "dataset": "gpqa",
+          "cue": "grader"
+        }
+      ],
+      "split_type": "giovanni",
+      "model": "google/gemma-3-12b-it",
+      "model_slug": "gemma-3-12b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 9,
+      "n_d_minus_train": 24,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-12b-it/gpqa/grader/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.7818181818181819,
+      "layer_test_pr_auc": 0.5311111111111111,
+      "out_path": "experiments/transfer/vectors/contrastive/giovanni/gemma-3-12b-it/gpqa_grader.pt"
+    },
+    {
+      "vector_norm": 97.40191650390625,
+      "layer": 10,
+      "hidden_size": 3840,
+      "scenario": "gpqa_insider",
+      "cells": [
+        {
+          "dataset": "gpqa",
+          "cue": "insider"
+        }
+      ],
+      "split_type": "giovanni",
+      "model": "google/gemma-3-12b-it",
+      "model_slug": "gemma-3-12b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 22,
+      "n_d_minus_train": 20,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-12b-it/gpqa/insider/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.8095238095238095,
+      "layer_test_pr_auc": 0.6287397787397787,
+      "out_path": "experiments/transfer/vectors/contrastive/giovanni/gemma-3-12b-it/gpqa_insider.pt"
+    },
+    {
+      "vector_norm": 348.7104187011719,
+      "layer": 13,
+      "hidden_size": 3840,
+      "scenario": "gpqa_stanford",
+      "cells": [
+        {
+          "dataset": "gpqa",
+          "cue": "stanford"
+        }
+      ],
+      "split_type": "giovanni",
+      "model": "google/gemma-3-12b-it",
+      "model_slug": "gemma-3-12b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 28,
+      "n_d_minus_train": 7,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-12b-it/gpqa/stanford/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.8166666666666667,
+      "layer_test_pr_auc": 0.9337454212454213,
+      "out_path": "experiments/transfer/vectors/contrastive/giovanni/gemma-3-12b-it/gpqa_stanford.pt"
+    },
+    {
+      "vector_norm": 3110.71728515625,
+      "layer": 45,
+      "hidden_size": 3840,
+      "scenario": "gpqa_xml",
+      "cells": [
+        {
+          "dataset": "gpqa",
+          "cue": "xml"
+        }
+      ],
+      "split_type": "giovanni",
+      "model": "google/gemma-3-12b-it",
+      "model_slug": "gemma-3-12b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 16,
+      "n_d_minus_train": 18,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-12b-it/gpqa/xml/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.7777777777777778,
+      "layer_test_pr_auc": 0.7880952380952381,
+      "out_path": "experiments/transfer/vectors/contrastive/giovanni/gemma-3-12b-it/gpqa_xml.pt"
+    },
+    {
+      "vector_norm": 4235.8330078125,
+      "layer": 43,
+      "hidden_size": 3840,
+      "scenario": "stanford_all",
+      "cells": [
+        {
+          "dataset": "bbh",
+          "cue": "stanford"
+        },
+        {
+          "dataset": "gpqa",
+          "cue": "stanford"
+        },
+        {
+          "dataset": "mmlu",
+          "cue": "stanford"
+        }
+      ],
+      "split_type": "giovanni",
+      "model": "google/gemma-3-12b-it",
+      "model_slug": "gemma-3-12b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 92,
+      "n_d_minus_train": 47,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-12b-it/bbh/stanford/mean_all_response.pt",
+        "experiments/transfer/activations/gemma-3-12b-it/gpqa/stanford/mean_all_response.pt",
+        "experiments/transfer/activations/gemma-3-12b-it/mmlu/stanford/mean_all_response.pt"
+      ],
+      "best_layer_source": "pooled_probe_fit",
+      "layer_test_roc_auc": 0.8156028368794326,
+      "layer_test_pr_auc": 0.9135235077977192,
+      "out_path": "experiments/transfer/vectors/contrastive/giovanni/gemma-3-12b-it/stanford_all.pt"
+    },
+    {
+      "vector_norm": 4971.6474609375,
+      "layer": 32,
+      "hidden_size": 3840,
+      "scenario": "stanford_bbh",
+      "cells": [
+        {
+          "dataset": "bbh",
+          "cue": "stanford"
+        }
+      ],
+      "split_type": "giovanni",
+      "model": "google/gemma-3-12b-it",
+      "model_slug": "gemma-3-12b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 25,
+      "n_d_minus_train": 19,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-12b-it/bbh/stanford/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.8272727272727273,
+      "layer_test_pr_auc": 0.8392307692307692,
+      "out_path": "experiments/transfer/vectors/contrastive/giovanni/gemma-3-12b-it/stanford_bbh.pt"
+    },
+    {
+      "vector_norm": 1014.4982299804688,
+      "layer": 24,
+      "hidden_size": 3840,
+      "scenario": "stanford_mmlu",
+      "cells": [
+        {
+          "dataset": "mmlu",
+          "cue": "stanford"
+        }
+      ],
+      "split_type": "giovanni",
+      "model": "google/gemma-3-12b-it",
+      "model_slug": "gemma-3-12b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 39,
+      "n_d_minus_train": 21,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-12b-it/mmlu/stanford/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.808,
+      "layer_test_pr_auc": 0.962797648745017,
+      "out_path": "experiments/transfer/vectors/contrastive/giovanni/gemma-3-12b-it/stanford_mmlu.pt"
+    },
+    {
+      "vector_norm": 1383.0413818359375,
+      "layer": 31,
+      "hidden_size": 2560,
+      "scenario": "gpqa_all",
+      "cells": [
+        {
+          "dataset": "gpqa",
+          "cue": "stanford"
+        },
+        {
+          "dataset": "gpqa",
+          "cue": "xml"
+        },
+        {
+          "dataset": "gpqa",
+          "cue": "grader"
+        },
+        {
+          "dataset": "gpqa",
+          "cue": "insider"
+        }
+      ],
+      "split_type": "meek",
+      "model": "google/gemma-3-4b-it",
+      "model_slug": "gemma-3-4b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 537,
+      "n_d_minus_train": 580,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-4b-it/gpqa/stanford/mean_all_response.pt",
+        "experiments/transfer/activations/gemma-3-4b-it/gpqa/xml/mean_all_response.pt",
+        "experiments/transfer/activations/gemma-3-4b-it/gpqa/grader/mean_all_response.pt",
+        "experiments/transfer/activations/gemma-3-4b-it/gpqa/insider/mean_all_response.pt"
+      ],
+      "best_layer_source": "pooled_probe_fit",
+      "layer_test_roc_auc": 0.5855620615076225,
+      "layer_test_pr_auc": 0.5951201739292677,
+      "out_path": "experiments/transfer/vectors/contrastive/meek/gemma-3-4b-it/gpqa_all.pt"
+    },
+    {
+      "vector_norm": 5578.4189453125,
+      "layer": 33,
+      "hidden_size": 2560,
+      "scenario": "gpqa_grader",
+      "cells": [
+        {
+          "dataset": "gpqa",
+          "cue": "grader"
+        }
+      ],
+      "split_type": "meek",
+      "model": "google/gemma-3-4b-it",
+      "model_slug": "gemma-3-4b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 177,
+      "n_d_minus_train": 95,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-4b-it/gpqa/grader/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.6901373283395755,
+      "layer_test_pr_auc": 0.8165389736589055,
+      "out_path": "experiments/transfer/vectors/contrastive/meek/gemma-3-4b-it/gpqa_grader.pt"
+    },
+    {
+      "vector_norm": 903.7769775390625,
+      "layer": 15,
+      "hidden_size": 2560,
+      "scenario": "gpqa_insider",
+      "cells": [
+        {
+          "dataset": "gpqa",
+          "cue": "insider"
+        }
+      ],
+      "split_type": "meek",
+      "model": "google/gemma-3-4b-it",
+      "model_slug": "gemma-3-4b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 102,
+      "n_d_minus_train": 187,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-4b-it/gpqa/insider/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.6916479477230958,
+      "layer_test_pr_auc": 0.5757905518912737,
+      "out_path": "experiments/transfer/vectors/contrastive/meek/gemma-3-4b-it/gpqa_insider.pt"
+    },
+    {
+      "vector_norm": 50.95064163208008,
+      "layer": 3,
+      "hidden_size": 2560,
+      "scenario": "gpqa_stanford",
+      "cells": [
+        {
+          "dataset": "gpqa",
+          "cue": "stanford"
+        }
+      ],
+      "split_type": "meek",
+      "model": "google/gemma-3-4b-it",
+      "model_slug": "gemma-3-4b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 196,
+      "n_d_minus_train": 83,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-4b-it/gpqa/stanford/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.6443877551020408,
+      "layer_test_pr_auc": 0.8403609898781754,
+      "out_path": "experiments/transfer/vectors/contrastive/meek/gemma-3-4b-it/gpqa_stanford.pt"
+    },
+    {
+      "vector_norm": 983.2064208984375,
+      "layer": 32,
+      "hidden_size": 2560,
+      "scenario": "gpqa_xml",
+      "cells": [
+        {
+          "dataset": "gpqa",
+          "cue": "xml"
+        }
+      ],
+      "split_type": "meek",
+      "model": "google/gemma-3-4b-it",
+      "model_slug": "gemma-3-4b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 62,
+      "n_d_minus_train": 215,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-4b-it/gpqa/xml/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.6679957469431154,
+      "layer_test_pr_auc": 0.41302132659465857,
+      "out_path": "experiments/transfer/vectors/contrastive/meek/gemma-3-4b-it/gpqa_xml.pt"
+    },
+    {
+      "vector_norm": 290.0760803222656,
+      "layer": 15,
+      "hidden_size": 2560,
+      "scenario": "stanford_all",
+      "cells": [
+        {
+          "dataset": "bbh",
+          "cue": "stanford"
+        },
+        {
+          "dataset": "gpqa",
+          "cue": "stanford"
+        },
+        {
+          "dataset": "mmlu",
+          "cue": "stanford"
+        }
+      ],
+      "split_type": "meek",
+      "model": "google/gemma-3-4b-it",
+      "model_slug": "gemma-3-4b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 654,
+      "n_d_minus_train": 285,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-4b-it/bbh/stanford/mean_all_response.pt",
+        "experiments/transfer/activations/gemma-3-4b-it/gpqa/stanford/mean_all_response.pt",
+        "experiments/transfer/activations/gemma-3-4b-it/mmlu/stanford/mean_all_response.pt"
+      ],
+      "best_layer_source": "pooled_probe_fit",
+      "layer_test_roc_auc": 0.5775228008237717,
+      "layer_test_pr_auc": 0.736532440723208,
+      "out_path": "experiments/transfer/vectors/contrastive/meek/gemma-3-4b-it/stanford_all.pt"
+    },
+    {
+      "vector_norm": 23.416606903076172,
+      "layer": 1,
+      "hidden_size": 2560,
+      "scenario": "stanford_bbh",
+      "cells": [
+        {
+          "dataset": "bbh",
+          "cue": "stanford"
+        }
+      ],
+      "split_type": "meek",
+      "model": "google/gemma-3-4b-it",
+      "model_slug": "gemma-3-4b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 189,
+      "n_d_minus_train": 143,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-4b-it/bbh/stanford/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.9379464285714286,
+      "layer_test_pr_auc": 0.941059218121658,
+      "out_path": "experiments/transfer/vectors/contrastive/meek/gemma-3-4b-it/stanford_bbh.pt"
+    },
+    {
+      "vector_norm": 343.5740051269531,
+      "layer": 14,
+      "hidden_size": 2560,
+      "scenario": "stanford_mmlu",
+      "cells": [
+        {
+          "dataset": "mmlu",
+          "cue": "stanford"
+        }
+      ],
+      "split_type": "meek",
+      "model": "google/gemma-3-4b-it",
+      "model_slug": "gemma-3-4b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 269,
+      "n_d_minus_train": 59,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-4b-it/mmlu/stanford/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.8545622973598889,
+      "layer_test_pr_auc": 0.9562060164652914,
+      "out_path": "experiments/transfer/vectors/contrastive/meek/gemma-3-4b-it/stanford_mmlu.pt"
+    },
+    {
+      "vector_norm": 89.44695281982422,
+      "layer": 4,
+      "hidden_size": 2560,
+      "scenario": "gpqa_all",
+      "cells": [
+        {
+          "dataset": "gpqa",
+          "cue": "stanford"
+        },
+        {
+          "dataset": "gpqa",
+          "cue": "xml"
+        },
+        {
+          "dataset": "gpqa",
+          "cue": "grader"
+        },
+        {
+          "dataset": "gpqa",
+          "cue": "insider"
+        }
+      ],
+      "split_type": "giovanni",
+      "model": "google/gemma-3-4b-it",
+      "model_slug": "gemma-3-4b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 57,
+      "n_d_minus_train": 41,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-4b-it/gpqa/stanford/mean_all_response.pt",
+        "experiments/transfer/activations/gemma-3-4b-it/gpqa/xml/mean_all_response.pt",
+        "experiments/transfer/activations/gemma-3-4b-it/gpqa/grader/mean_all_response.pt",
+        "experiments/transfer/activations/gemma-3-4b-it/gpqa/insider/mean_all_response.pt"
+      ],
+      "best_layer_source": "pooled_probe_fit",
+      "layer_test_roc_auc": 0.8466666666666667,
+      "layer_test_pr_auc": 0.8737362794839575,
+      "out_path": "experiments/transfer/vectors/contrastive/giovanni/gemma-3-4b-it/gpqa_all.pt"
+    },
+    {
+      "vector_norm": 65.57693481445312,
+      "layer": 0,
+      "hidden_size": 2560,
+      "scenario": "gpqa_grader",
+      "cells": [
+        {
+          "dataset": "gpqa",
+          "cue": "grader"
+        }
+      ],
+      "split_type": "giovanni",
+      "model": "google/gemma-3-4b-it",
+      "model_slug": "gemma-3-4b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 16,
+      "n_d_minus_train": 11,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-4b-it/gpqa/grader/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.8666666666666667,
+      "layer_test_pr_auc": 0.9622222222222223,
+      "out_path": "experiments/transfer/vectors/contrastive/giovanni/gemma-3-4b-it/gpqa_grader.pt"
+    },
+    {
+      "vector_norm": 1004.1641235351562,
+      "layer": 14,
+      "hidden_size": 2560,
+      "scenario": "gpqa_insider",
+      "cells": [
+        {
+          "dataset": "gpqa",
+          "cue": "insider"
+        }
+      ],
+      "split_type": "giovanni",
+      "model": "google/gemma-3-4b-it",
+      "model_slug": "gemma-3-4b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 14,
+      "n_d_minus_train": 15,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-4b-it/gpqa/insider/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 1.0,
+      "layer_test_pr_auc": 1.0,
+      "out_path": "experiments/transfer/vectors/contrastive/giovanni/gemma-3-4b-it/gpqa_insider.pt"
+    },
+    {
+      "vector_norm": 1578.636474609375,
+      "layer": 20,
+      "hidden_size": 2560,
+      "scenario": "gpqa_stanford",
+      "cells": [
+        {
+          "dataset": "gpqa",
+          "cue": "stanford"
+        }
+      ],
+      "split_type": "giovanni",
+      "model": "google/gemma-3-4b-it",
+      "model_slug": "gemma-3-4b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 19,
+      "n_d_minus_train": 2,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-4b-it/gpqa/stanford/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.5,
+      "layer_test_pr_auc": 0.8197781385281386,
+      "out_path": "experiments/transfer/vectors/contrastive/giovanni/gemma-3-4b-it/gpqa_stanford.pt"
+    },
+    {
+      "vector_norm": 302.0967102050781,
+      "layer": 13,
+      "hidden_size": 2560,
+      "scenario": "gpqa_xml",
+      "cells": [
+        {
+          "dataset": "gpqa",
+          "cue": "xml"
+        }
+      ],
+      "split_type": "giovanni",
+      "model": "google/gemma-3-4b-it",
+      "model_slug": "gemma-3-4b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 8,
+      "n_d_minus_train": 13,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-4b-it/gpqa/xml/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.8,
+      "layer_test_pr_auc": 0.3333333333333333,
+      "out_path": "experiments/transfer/vectors/contrastive/giovanni/gemma-3-4b-it/gpqa_xml.pt"
+    },
+    {
+      "vector_norm": 76.6158447265625,
+      "layer": 7,
+      "hidden_size": 2560,
+      "scenario": "stanford_all",
+      "cells": [
+        {
+          "dataset": "bbh",
+          "cue": "stanford"
+        },
+        {
+          "dataset": "gpqa",
+          "cue": "stanford"
+        },
+        {
+          "dataset": "mmlu",
+          "cue": "stanford"
+        }
+      ],
+      "split_type": "giovanni",
+      "model": "google/gemma-3-4b-it",
+      "model_slug": "gemma-3-4b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 104,
+      "n_d_minus_train": 35,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-4b-it/bbh/stanford/mean_all_response.pt",
+        "experiments/transfer/activations/gemma-3-4b-it/gpqa/stanford/mean_all_response.pt",
+        "experiments/transfer/activations/gemma-3-4b-it/mmlu/stanford/mean_all_response.pt"
+      ],
+      "best_layer_source": "pooled_probe_fit",
+      "layer_test_roc_auc": 0.7766233766233767,
+      "layer_test_pr_auc": 0.9125597367761215,
+      "out_path": "experiments/transfer/vectors/contrastive/giovanni/gemma-3-4b-it/stanford_all.pt"
+    },
+    {
+      "vector_norm": 96.05681610107422,
+      "layer": 7,
+      "hidden_size": 2560,
+      "scenario": "stanford_bbh",
+      "cells": [
+        {
+          "dataset": "bbh",
+          "cue": "stanford"
+        }
+      ],
+      "split_type": "giovanni",
+      "model": "google/gemma-3-4b-it",
+      "model_slug": "gemma-3-4b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 37,
+      "n_d_minus_train": 24,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-4b-it/bbh/stanford/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.906832298136646,
+      "layer_test_pr_auc": 0.9658121512728457,
+      "out_path": "experiments/transfer/vectors/contrastive/giovanni/gemma-3-4b-it/stanford_bbh.pt"
+    },
+    {
+      "vector_norm": 283.5513000488281,
+      "layer": 12,
+      "hidden_size": 2560,
+      "scenario": "stanford_mmlu",
+      "cells": [
+        {
+          "dataset": "mmlu",
+          "cue": "stanford"
+        }
+      ],
+      "split_type": "giovanni",
+      "model": "google/gemma-3-4b-it",
+      "model_slug": "gemma-3-4b-it",
+      "method": "dom_train_only",
+      "n_d_plus_train": 48,
+      "n_d_minus_train": 9,
+      "source_pt_paths": [
+        "experiments/transfer/activations/gemma-3-4b-it/mmlu/stanford/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.8854166666666666,
+      "layer_test_pr_auc": 0.9807483093438472,
+      "out_path": "experiments/transfer/vectors/contrastive/giovanni/gemma-3-4b-it/stanford_mmlu.pt"
+    },
+    {
+      "vector_norm": 0.5407823324203491,
+      "layer": 12,
+      "hidden_size": 4096,
+      "scenario": "gpqa_all",
+      "cells": [
+        {
+          "dataset": "gpqa",
+          "cue": "stanford"
+        },
+        {
+          "dataset": "gpqa",
+          "cue": "xml"
+        },
+        {
+          "dataset": "gpqa",
+          "cue": "grader"
+        },
+        {
+          "dataset": "gpqa",
+          "cue": "insider"
+        }
+      ],
+      "split_type": "meek",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "method": "dom_train_only",
+      "n_d_plus_train": 537,
+      "n_d_minus_train": 575,
+      "source_pt_paths": [
+        "experiments/transfer/activations/qwen3.5-9b/gpqa/stanford/mean_all_response.pt",
+        "experiments/transfer/activations/qwen3.5-9b/gpqa/xml/mean_all_response.pt",
+        "experiments/transfer/activations/qwen3.5-9b/gpqa/grader/mean_all_response.pt",
+        "experiments/transfer/activations/qwen3.5-9b/gpqa/insider/mean_all_response.pt"
+      ],
+      "best_layer_source": "pooled_probe_fit",
+      "layer_test_roc_auc": 0.5683348986985106,
+      "layer_test_pr_auc": 0.5316753798569258,
+      "out_path": "experiments/transfer/vectors/contrastive/meek/qwen3.5-9b/gpqa_all.pt"
+    },
+    {
+      "vector_norm": 9.116138458251953,
+      "layer": 25,
+      "hidden_size": 4096,
+      "scenario": "gpqa_grader",
+      "cells": [
+        {
+          "dataset": "gpqa",
+          "cue": "grader"
+        }
+      ],
+      "split_type": "meek",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "method": "dom_train_only",
+      "n_d_plus_train": 178,
+      "n_d_minus_train": 85,
+      "source_pt_paths": [
+        "experiments/transfer/activations/qwen3.5-9b/gpqa/grader/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.6422787738577213,
+      "layer_test_pr_auc": 0.7800669081964842,
+      "out_path": "experiments/transfer/vectors/contrastive/meek/qwen3.5-9b/gpqa_grader.pt"
+    },
+    {
+      "vector_norm": 0.13260573148727417,
+      "layer": 4,
+      "hidden_size": 4096,
+      "scenario": "gpqa_insider",
+      "cells": [
+        {
+          "dataset": "gpqa",
+          "cue": "insider"
+        }
+      ],
+      "split_type": "meek",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "method": "dom_train_only",
+      "n_d_plus_train": 117,
+      "n_d_minus_train": 172,
+      "source_pt_paths": [
+        "experiments/transfer/activations/qwen3.5-9b/gpqa/insider/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.6341222879684418,
+      "layer_test_pr_auc": 0.5772949031572772,
+      "out_path": "experiments/transfer/vectors/contrastive/meek/qwen3.5-9b/gpqa_insider.pt"
+    },
+    {
+      "vector_norm": 0.5344370007514954,
+      "layer": 9,
+      "hidden_size": 4096,
+      "scenario": "gpqa_stanford",
+      "cells": [
+        {
+          "dataset": "gpqa",
+          "cue": "stanford"
+        }
+      ],
+      "split_type": "meek",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "method": "dom_train_only",
+      "n_d_plus_train": 201,
+      "n_d_minus_train": 76,
+      "source_pt_paths": [
+        "experiments/transfer/activations/qwen3.5-9b/gpqa/stanford/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.6546712802768166,
+      "layer_test_pr_auc": 0.7394124322417241,
+      "out_path": "experiments/transfer/vectors/contrastive/meek/qwen3.5-9b/gpqa_stanford.pt"
+    },
+    {
+      "vector_norm": 9.234357833862305,
+      "layer": 24,
+      "hidden_size": 4096,
+      "scenario": "gpqa_xml",
+      "cells": [
+        {
+          "dataset": "gpqa",
+          "cue": "xml"
+        }
+      ],
+      "split_type": "meek",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "method": "dom_train_only",
+      "n_d_plus_train": 41,
+      "n_d_minus_train": 242,
+      "source_pt_paths": [
+        "experiments/transfer/activations/qwen3.5-9b/gpqa/xml/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.6961382113821138,
+      "layer_test_pr_auc": 0.21351590069796986,
+      "out_path": "experiments/transfer/vectors/contrastive/meek/qwen3.5-9b/gpqa_xml.pt"
+    },
+    {
+      "vector_norm": 0.29005154967308044,
+      "layer": 3,
+      "hidden_size": 4096,
+      "scenario": "stanford_all",
+      "cells": [
+        {
+          "dataset": "bbh",
+          "cue": "stanford"
+        },
+        {
+          "dataset": "gpqa",
+          "cue": "stanford"
+        },
+        {
+          "dataset": "mmlu",
+          "cue": "stanford"
+        }
+      ],
+      "split_type": "meek",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "method": "dom_train_only",
+      "n_d_plus_train": 631,
+      "n_d_minus_train": 315,
+      "source_pt_paths": [
+        "experiments/transfer/activations/qwen3.5-9b/bbh/stanford/mean_all_response.pt",
+        "experiments/transfer/activations/qwen3.5-9b/gpqa/stanford/mean_all_response.pt",
+        "experiments/transfer/activations/qwen3.5-9b/mmlu/stanford/mean_all_response.pt"
+      ],
+      "best_layer_source": "pooled_probe_fit",
+      "layer_test_roc_auc": 0.6035359801488833,
+      "layer_test_pr_auc": 0.7270718539390196,
+      "out_path": "experiments/transfer/vectors/contrastive/meek/qwen3.5-9b/stanford_all.pt"
+    },
+    {
+      "vector_norm": 1.043459177017212,
+      "layer": 9,
+      "hidden_size": 4096,
+      "scenario": "stanford_bbh",
+      "cells": [
+        {
+          "dataset": "bbh",
+          "cue": "stanford"
+        }
+      ],
+      "split_type": "meek",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "method": "dom_train_only",
+      "n_d_plus_train": 204,
+      "n_d_minus_train": 130,
+      "source_pt_paths": [
+        "experiments/transfer/activations/qwen3.5-9b/bbh/stanford/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.636484940907358,
+      "layer_test_pr_auc": 0.7937977082301212,
+      "out_path": "experiments/transfer/vectors/contrastive/meek/qwen3.5-9b/stanford_bbh.pt"
+    },
+    {
+      "vector_norm": 1.8062669038772583,
+      "layer": 16,
+      "hidden_size": 4096,
+      "scenario": "stanford_mmlu",
+      "cells": [
+        {
+          "dataset": "mmlu",
+          "cue": "stanford"
+        }
+      ],
+      "split_type": "meek",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "method": "dom_train_only",
+      "n_d_plus_train": 226,
+      "n_d_minus_train": 109,
+      "source_pt_paths": [
+        "experiments/transfer/activations/qwen3.5-9b/mmlu/stanford/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.9104290635765737,
+      "layer_test_pr_auc": 0.946139252708731,
+      "out_path": "experiments/transfer/vectors/contrastive/meek/qwen3.5-9b/stanford_mmlu.pt"
+    },
+    {
+      "vector_norm": 0.8882638812065125,
+      "layer": 15,
+      "hidden_size": 4096,
+      "scenario": "gpqa_all",
+      "cells": [
+        {
+          "dataset": "gpqa",
+          "cue": "stanford"
+        },
+        {
+          "dataset": "gpqa",
+          "cue": "xml"
+        },
+        {
+          "dataset": "gpqa",
+          "cue": "grader"
+        },
+        {
+          "dataset": "gpqa",
+          "cue": "insider"
+        }
+      ],
+      "split_type": "giovanni",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "method": "dom_train_only",
+      "n_d_plus_train": 151,
+      "n_d_minus_train": 121,
+      "source_pt_paths": [
+        "experiments/transfer/activations/qwen3.5-9b/gpqa/stanford/mean_all_response.pt",
+        "experiments/transfer/activations/qwen3.5-9b/gpqa/xml/mean_all_response.pt",
+        "experiments/transfer/activations/qwen3.5-9b/gpqa/grader/mean_all_response.pt",
+        "experiments/transfer/activations/qwen3.5-9b/gpqa/insider/mean_all_response.pt"
+      ],
+      "best_layer_source": "pooled_probe_fit",
+      "layer_test_roc_auc": 0.612408424908425,
+      "layer_test_pr_auc": 0.6253283837546585,
+      "out_path": "experiments/transfer/vectors/contrastive/giovanni/qwen3.5-9b/gpqa_all.pt"
+    },
+    {
+      "vector_norm": 1.6009719371795654,
+      "layer": 14,
+      "hidden_size": 4096,
+      "scenario": "gpqa_grader",
+      "cells": [
+        {
+          "dataset": "gpqa",
+          "cue": "grader"
+        }
+      ],
+      "split_type": "giovanni",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "method": "dom_train_only",
+      "n_d_plus_train": 61,
+      "n_d_minus_train": 20,
+      "source_pt_paths": [
+        "experiments/transfer/activations/qwen3.5-9b/gpqa/grader/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.9592476489028213,
+      "layer_test_pr_auc": 0.9837656591041662,
+      "out_path": "experiments/transfer/vectors/contrastive/giovanni/qwen3.5-9b/gpqa_grader.pt"
+    },
+    {
+      "vector_norm": 9.525946617126465,
+      "layer": 26,
+      "hidden_size": 4096,
+      "scenario": "gpqa_insider",
+      "cells": [
+        {
+          "dataset": "gpqa",
+          "cue": "insider"
+        }
+      ],
+      "split_type": "giovanni",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "method": "dom_train_only",
+      "n_d_plus_train": 35,
+      "n_d_minus_train": 58,
+      "source_pt_paths": [
+        "experiments/transfer/activations/qwen3.5-9b/gpqa/insider/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.7519230769230769,
+      "layer_test_pr_auc": 0.7008119640778325,
+      "out_path": "experiments/transfer/vectors/contrastive/giovanni/qwen3.5-9b/gpqa_insider.pt"
+    },
+    {
+      "vector_norm": 0.21731965243816376,
+      "layer": 3,
+      "hidden_size": 4096,
+      "scenario": "gpqa_stanford",
+      "cells": [
+        {
+          "dataset": "gpqa",
+          "cue": "stanford"
+        }
+      ],
+      "split_type": "giovanni",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "method": "dom_train_only",
+      "n_d_plus_train": 45,
+      "n_d_minus_train": 12,
+      "source_pt_paths": [
+        "experiments/transfer/activations/qwen3.5-9b/gpqa/stanford/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.7424242424242424,
+      "layer_test_pr_auc": 0.920993984250785,
+      "out_path": "experiments/transfer/vectors/contrastive/giovanni/qwen3.5-9b/gpqa_stanford.pt"
+    },
+    {
+      "vector_norm": 1.4395840167999268,
+      "layer": 11,
+      "hidden_size": 4096,
+      "scenario": "gpqa_xml",
+      "cells": [
+        {
+          "dataset": "gpqa",
+          "cue": "xml"
+        }
+      ],
+      "split_type": "giovanni",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "method": "dom_train_only",
+      "n_d_plus_train": 10,
+      "n_d_minus_train": 31,
+      "source_pt_paths": [
+        "experiments/transfer/activations/qwen3.5-9b/gpqa/xml/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.7912087912087912,
+      "layer_test_pr_auc": 0.7132962275819418,
+      "out_path": "experiments/transfer/vectors/contrastive/giovanni/qwen3.5-9b/gpqa_xml.pt"
+    },
+    {
+      "vector_norm": 0.23562060296535492,
+      "layer": 3,
+      "hidden_size": 4096,
+      "scenario": "stanford_all",
+      "cells": [
+        {
+          "dataset": "bbh",
+          "cue": "stanford"
+        },
+        {
+          "dataset": "gpqa",
+          "cue": "stanford"
+        },
+        {
+          "dataset": "mmlu",
+          "cue": "stanford"
+        }
+      ],
+      "split_type": "giovanni",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "method": "dom_train_only",
+      "n_d_plus_train": 127,
+      "n_d_minus_train": 31,
+      "source_pt_paths": [
+        "experiments/transfer/activations/qwen3.5-9b/bbh/stanford/mean_all_response.pt",
+        "experiments/transfer/activations/qwen3.5-9b/gpqa/stanford/mean_all_response.pt",
+        "experiments/transfer/activations/qwen3.5-9b/mmlu/stanford/mean_all_response.pt"
+      ],
+      "best_layer_source": "pooled_probe_fit",
+      "layer_test_roc_auc": 0.8921568627450981,
+      "layer_test_pr_auc": 0.9633063077727563,
+      "out_path": "experiments/transfer/vectors/contrastive/giovanni/qwen3.5-9b/stanford_all.pt"
+    },
+    {
+      "vector_norm": 0.9507110714912415,
+      "layer": 7,
+      "hidden_size": 4096,
+      "scenario": "stanford_bbh",
+      "cells": [
+        {
+          "dataset": "bbh",
+          "cue": "stanford"
+        }
+      ],
+      "split_type": "giovanni",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "method": "dom_train_only",
+      "n_d_plus_train": 47,
+      "n_d_minus_train": 9,
+      "source_pt_paths": [
+        "experiments/transfer/activations/qwen3.5-9b/bbh/stanford/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.8285714285714286,
+      "layer_test_pr_auc": 0.9376457637630912,
+      "out_path": "experiments/transfer/vectors/contrastive/giovanni/qwen3.5-9b/stanford_bbh.pt"
+    },
+    {
+      "vector_norm": 16.682353973388672,
+      "layer": 27,
+      "hidden_size": 4096,
+      "scenario": "stanford_mmlu",
+      "cells": [
+        {
+          "dataset": "mmlu",
+          "cue": "stanford"
+        }
+      ],
+      "split_type": "giovanni",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "method": "dom_train_only",
+      "n_d_plus_train": 35,
+      "n_d_minus_train": 10,
+      "source_pt_paths": [
+        "experiments/transfer/activations/qwen3.5-9b/mmlu/stanford/mean_all_response.pt"
+      ],
+      "best_layer_source": "probe_json",
+      "layer_test_roc_auc": 0.9166666666666666,
+      "layer_test_pr_auc": 0.9809141249092228,
+      "out_path": "experiments/transfer/vectors/contrastive/giovanni/qwen3.5-9b/stanford_mmlu.pt"
+    }
+  ],
+  "failed": []
+}

@@ -1,0 +1,25 @@
+{
+  "cue": "stanford",
+  "dataset": "mmlu",
+  "filter_counts": {
+    "filtered_cued_degenerate": 0,
+    "filtered_cued_no_adopt": 399,
+    "filtered_no_letter": 5,
+    "filtered_no_uncued_pair": 0,
+    "filtered_uncued_degenerate": 0,
+    "filtered_uncued_incorrect": 29,
+    "n_cued_total": 500,
+    "n_giovanni": 67,
+    "n_meek": 500
+  },
+  "model": "qwen3.5-9b",
+  "n_cued_total": 500,
+  "n_giovanni": 67,
+  "n_giovanni_test": 22,
+  "n_giovanni_train": 45,
+  "n_meek": 500,
+  "n_meek_test": 165,
+  "n_meek_train": 335,
+  "scenario_seed": 3710980165,
+  "status": "ok"
+}

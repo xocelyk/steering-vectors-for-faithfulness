@@ -1,0 +1,25 @@
+{
+  "cue": "insider",
+  "dataset": "mmlu",
+  "filter_counts": {
+    "filtered_cued_degenerate": 12,
+    "filtered_cued_no_adopt": 284,
+    "filtered_no_letter": 1,
+    "filtered_no_uncued_pair": 0,
+    "filtered_uncued_degenerate": 24,
+    "filtered_uncued_incorrect": 92,
+    "n_cued_total": 500,
+    "n_giovanni": 87,
+    "n_meek": 488
+  },
+  "model": "gemma-3-12b-it",
+  "n_cued_total": 500,
+  "n_giovanni": 87,
+  "n_giovanni_test": 29,
+  "n_giovanni_train": 58,
+  "n_meek": 488,
+  "n_meek_test": 161,
+  "n_meek_train": 327,
+  "scenario_seed": 4263442193,
+  "status": "ok"
+}

@@ -1,0 +1,25 @@
+{
+  "cue": "insider",
+  "dataset": "gpqa",
+  "filter_counts": {
+    "filtered_cued_degenerate": 16,
+    "filtered_cued_no_adopt": 145,
+    "filtered_no_letter": 15,
+    "filtered_no_uncued_pair": 0,
+    "filtered_uncued_degenerate": 29,
+    "filtered_uncued_incorrect": 104,
+    "n_cued_total": 448,
+    "n_giovanni": 139,
+    "n_meek": 432
+  },
+  "model": "qwen3.5-9b",
+  "n_cued_total": 448,
+  "n_giovanni": 139,
+  "n_giovanni_test": 46,
+  "n_giovanni_train": 93,
+  "n_meek": 432,
+  "n_meek_test": 143,
+  "n_meek_train": 289,
+  "scenario_seed": 2675145956,
+  "status": "ok"
+}

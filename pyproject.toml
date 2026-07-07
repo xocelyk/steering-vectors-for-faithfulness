@@ -1,0 +1,32 @@
+[project]
+name = "steering-vectors-for-faithfulness"
+version = "0.1.0"
+description = "Training steering vectors to enhance chain-of-thought faithfulness and verbosity"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "bitsandbytes>=0.49.2",
+    "datasets",
+    "huggingface-hub>=1.14.0",
+    "inspect-ai",
+    "jinja2",
+    "matplotlib>=3.10.9",
+    "mdmm",
+    "nnsight==0.7.0",
+    "numpy",
+    "openai",
+    "python-dotenv",
+    "scikit-learn",
+    "scipy",
+    "torch",
+    "tqdm",
+    "transformers",
+    "vllm>=0.20.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/steering_vectors_for_faithfulness"]

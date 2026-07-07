@@ -1,0 +1,428 @@
+{
+  "vectors": [
+    {
+      "best_layer_source": "aggregate_probe_json",
+      "cells": [
+        {
+          "cue": "stanford",
+          "dataset": "gpqa"
+        },
+        {
+          "cue": "xml",
+          "dataset": "gpqa"
+        },
+        {
+          "cue": "grader",
+          "dataset": "gpqa"
+        },
+        {
+          "cue": "insider",
+          "dataset": "gpqa"
+        }
+      ],
+      "hidden_size": 4096,
+      "layer": 12,
+      "method": "synthetic_dom",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "n_d_minus": 1112,
+      "n_d_plus": 1112,
+      "probe_path": "experiments/transfer/probes/meek/qwen3.5-9b__gpqa_all.json",
+      "probe_test_pr_auc": 0.5316753798569258,
+      "probe_test_roc_auc": 0.5683348986985106,
+      "scenario": "gpqa_all",
+      "source_activations": "experiments/transfer/activations_synthetic/meek/qwen3.5-9b/gpqa_all.pt",
+      "source_jsonl": "experiments/transfer/synthetic_examples/meek/qwen3.5-9b/gpqa_all.jsonl",
+      "split_type": "meek",
+      "vector_norm": 6.3047261238098145
+    },
+    {
+      "best_layer_source": "probe_json",
+      "cells": [
+        {
+          "cue": "grader",
+          "dataset": "gpqa"
+        }
+      ],
+      "hidden_size": 4096,
+      "layer": 25,
+      "method": "synthetic_dom",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "n_d_minus": 263,
+      "n_d_plus": 263,
+      "probe_path": "experiments/transfer/probes/meek/qwen3.5-9b__gpqa__grader.json",
+      "probe_test_pr_auc": 0.7800669081964842,
+      "probe_test_roc_auc": 0.6422787738577213,
+      "scenario": "gpqa_grader",
+      "source_activations": "experiments/transfer/activations_synthetic/meek/qwen3.5-9b/gpqa_grader.pt",
+      "source_jsonl": "experiments/transfer/synthetic_examples/meek/qwen3.5-9b/gpqa_grader.jsonl",
+      "split_type": "meek",
+      "vector_norm": 57.323753356933594
+    },
+    {
+      "best_layer_source": "probe_json",
+      "cells": [
+        {
+          "cue": "insider",
+          "dataset": "gpqa"
+        }
+      ],
+      "hidden_size": 4096,
+      "layer": 4,
+      "method": "synthetic_dom",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "n_d_minus": 289,
+      "n_d_plus": 289,
+      "probe_path": "experiments/transfer/probes/meek/qwen3.5-9b__gpqa__insider.json",
+      "probe_test_pr_auc": 0.5772949031572772,
+      "probe_test_roc_auc": 0.6341222879684418,
+      "scenario": "gpqa_insider",
+      "source_activations": "experiments/transfer/activations_synthetic/meek/qwen3.5-9b/gpqa_insider.pt",
+      "source_jsonl": "experiments/transfer/synthetic_examples/meek/qwen3.5-9b/gpqa_insider.jsonl",
+      "split_type": "meek",
+      "vector_norm": 2.8346245288848877
+    },
+    {
+      "best_layer_source": "probe_json",
+      "cells": [
+        {
+          "cue": "stanford",
+          "dataset": "gpqa"
+        }
+      ],
+      "hidden_size": 4096,
+      "layer": 9,
+      "method": "synthetic_dom",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "n_d_minus": 277,
+      "n_d_plus": 277,
+      "probe_path": "experiments/transfer/probes/meek/qwen3.5-9b__gpqa__stanford.json",
+      "probe_test_pr_auc": 0.7394124322417241,
+      "probe_test_roc_auc": 0.6546712802768166,
+      "scenario": "gpqa_stanford",
+      "source_activations": "experiments/transfer/activations_synthetic/meek/qwen3.5-9b/gpqa_stanford.pt",
+      "source_jsonl": "experiments/transfer/synthetic_examples/meek/qwen3.5-9b/gpqa_stanford.jsonl",
+      "split_type": "meek",
+      "vector_norm": 5.582665920257568
+    },
+    {
+      "best_layer_source": "probe_json",
+      "cells": [
+        {
+          "cue": "xml",
+          "dataset": "gpqa"
+        }
+      ],
+      "hidden_size": 4096,
+      "layer": 24,
+      "method": "synthetic_dom",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "n_d_minus": 283,
+      "n_d_plus": 283,
+      "probe_path": "experiments/transfer/probes/meek/qwen3.5-9b__gpqa__xml.json",
+      "probe_test_pr_auc": 0.21351590069796986,
+      "probe_test_roc_auc": 0.6961382113821138,
+      "scenario": "gpqa_xml",
+      "source_activations": "experiments/transfer/activations_synthetic/meek/qwen3.5-9b/gpqa_xml.pt",
+      "source_jsonl": "experiments/transfer/synthetic_examples/meek/qwen3.5-9b/gpqa_xml.jsonl",
+      "split_type": "meek",
+      "vector_norm": 53.89775466918945
+    },
+    {
+      "best_layer_source": "aggregate_probe_json",
+      "cells": [
+        {
+          "cue": "stanford",
+          "dataset": "bbh"
+        },
+        {
+          "cue": "stanford",
+          "dataset": "gpqa"
+        },
+        {
+          "cue": "stanford",
+          "dataset": "mmlu"
+        }
+      ],
+      "hidden_size": 4096,
+      "layer": 3,
+      "method": "synthetic_dom",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "n_d_minus": 946,
+      "n_d_plus": 946,
+      "probe_path": "experiments/transfer/probes/meek/qwen3.5-9b__stanford_all.json",
+      "probe_test_pr_auc": 0.7270718539390196,
+      "probe_test_roc_auc": 0.6035359801488833,
+      "scenario": "stanford_all",
+      "source_activations": "experiments/transfer/activations_synthetic/meek/qwen3.5-9b/stanford_all.pt",
+      "source_jsonl": "experiments/transfer/synthetic_examples/meek/qwen3.5-9b/stanford_all.jsonl",
+      "split_type": "meek",
+      "vector_norm": 2.3181698322296143
+    },
+    {
+      "best_layer_source": "probe_json",
+      "cells": [
+        {
+          "cue": "stanford",
+          "dataset": "bbh"
+        }
+      ],
+      "hidden_size": 4096,
+      "layer": 9,
+      "method": "synthetic_dom",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "n_d_minus": 334,
+      "n_d_plus": 334,
+      "probe_path": "experiments/transfer/probes/meek/qwen3.5-9b__bbh__stanford.json",
+      "probe_test_pr_auc": 0.7937977082301212,
+      "probe_test_roc_auc": 0.636484940907358,
+      "scenario": "stanford_bbh",
+      "source_activations": "experiments/transfer/activations_synthetic/meek/qwen3.5-9b/stanford_bbh.pt",
+      "source_jsonl": "experiments/transfer/synthetic_examples/meek/qwen3.5-9b/stanford_bbh.jsonl",
+      "split_type": "meek",
+      "vector_norm": 5.332966327667236
+    },
+    {
+      "best_layer_source": "probe_json",
+      "cells": [
+        {
+          "cue": "stanford",
+          "dataset": "mmlu"
+        }
+      ],
+      "hidden_size": 4096,
+      "layer": 16,
+      "method": "synthetic_dom",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "n_d_minus": 335,
+      "n_d_plus": 335,
+      "probe_path": "experiments/transfer/probes/meek/qwen3.5-9b__mmlu__stanford.json",
+      "probe_test_pr_auc": 0.946139252708731,
+      "probe_test_roc_auc": 0.9104290635765737,
+      "scenario": "stanford_mmlu",
+      "source_activations": "experiments/transfer/activations_synthetic/meek/qwen3.5-9b/stanford_mmlu.pt",
+      "source_jsonl": "experiments/transfer/synthetic_examples/meek/qwen3.5-9b/stanford_mmlu.jsonl",
+      "split_type": "meek",
+      "vector_norm": 11.732952117919922
+    },
+    {
+      "best_layer_source": "aggregate_probe_json",
+      "cells": [
+        {
+          "cue": "stanford",
+          "dataset": "gpqa"
+        },
+        {
+          "cue": "xml",
+          "dataset": "gpqa"
+        },
+        {
+          "cue": "grader",
+          "dataset": "gpqa"
+        },
+        {
+          "cue": "insider",
+          "dataset": "gpqa"
+        }
+      ],
+      "hidden_size": 4096,
+      "layer": 12,
+      "method": "synthetic_dom",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "n_d_minus": 272,
+      "n_d_plus": 272,
+      "probe_path": "experiments/transfer/probes/meek/qwen3.5-9b__gpqa_all.json",
+      "probe_test_pr_auc": 0.5316753798569258,
+      "probe_test_roc_auc": 0.5683348986985106,
+      "scenario": "gpqa_all",
+      "source_activations": "experiments/transfer/activations_synthetic/giovanni/qwen3.5-9b/gpqa_all.pt",
+      "source_jsonl": "experiments/transfer/synthetic_examples/giovanni/qwen3.5-9b/gpqa_all.jsonl",
+      "split_type": "giovanni",
+      "vector_norm": 6.351449489593506
+    },
+    {
+      "best_layer_source": "probe_json",
+      "cells": [
+        {
+          "cue": "grader",
+          "dataset": "gpqa"
+        }
+      ],
+      "hidden_size": 4096,
+      "layer": 25,
+      "method": "synthetic_dom",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "n_d_minus": 81,
+      "n_d_plus": 81,
+      "probe_path": "experiments/transfer/probes/meek/qwen3.5-9b__gpqa__grader.json",
+      "probe_test_pr_auc": 0.7800669081964842,
+      "probe_test_roc_auc": 0.6422787738577213,
+      "scenario": "gpqa_grader",
+      "source_activations": "experiments/transfer/activations_synthetic/giovanni/qwen3.5-9b/gpqa_grader.pt",
+      "source_jsonl": "experiments/transfer/synthetic_examples/giovanni/qwen3.5-9b/gpqa_grader.jsonl",
+      "split_type": "giovanni",
+      "vector_norm": 57.39072036743164
+    },
+    {
+      "best_layer_source": "probe_json",
+      "cells": [
+        {
+          "cue": "insider",
+          "dataset": "gpqa"
+        }
+      ],
+      "hidden_size": 4096,
+      "layer": 4,
+      "method": "synthetic_dom",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "n_d_minus": 93,
+      "n_d_plus": 93,
+      "probe_path": "experiments/transfer/probes/meek/qwen3.5-9b__gpqa__insider.json",
+      "probe_test_pr_auc": 0.5772949031572772,
+      "probe_test_roc_auc": 0.6341222879684418,
+      "scenario": "gpqa_insider",
+      "source_activations": "experiments/transfer/activations_synthetic/giovanni/qwen3.5-9b/gpqa_insider.pt",
+      "source_jsonl": "experiments/transfer/synthetic_examples/giovanni/qwen3.5-9b/gpqa_insider.jsonl",
+      "split_type": "giovanni",
+      "vector_norm": 2.835676431655884
+    },
+    {
+      "best_layer_source": "probe_json",
+      "cells": [
+        {
+          "cue": "stanford",
+          "dataset": "gpqa"
+        }
+      ],
+      "hidden_size": 4096,
+      "layer": 9,
+      "method": "synthetic_dom",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "n_d_minus": 57,
+      "n_d_plus": 57,
+      "probe_path": "experiments/transfer/probes/meek/qwen3.5-9b__gpqa__stanford.json",
+      "probe_test_pr_auc": 0.7394124322417241,
+      "probe_test_roc_auc": 0.6546712802768166,
+      "scenario": "gpqa_stanford",
+      "source_activations": "experiments/transfer/activations_synthetic/giovanni/qwen3.5-9b/gpqa_stanford.pt",
+      "source_jsonl": "experiments/transfer/synthetic_examples/giovanni/qwen3.5-9b/gpqa_stanford.jsonl",
+      "split_type": "giovanni",
+      "vector_norm": 5.616733074188232
+    },
+    {
+      "best_layer_source": "probe_json",
+      "cells": [
+        {
+          "cue": "xml",
+          "dataset": "gpqa"
+        }
+      ],
+      "hidden_size": 4096,
+      "layer": 24,
+      "method": "synthetic_dom",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "n_d_minus": 41,
+      "n_d_plus": 41,
+      "probe_path": "experiments/transfer/probes/meek/qwen3.5-9b__gpqa__xml.json",
+      "probe_test_pr_auc": 0.21351590069796986,
+      "probe_test_roc_auc": 0.6961382113821138,
+      "scenario": "gpqa_xml",
+      "source_activations": "experiments/transfer/activations_synthetic/giovanni/qwen3.5-9b/gpqa_xml.pt",
+      "source_jsonl": "experiments/transfer/synthetic_examples/giovanni/qwen3.5-9b/gpqa_xml.jsonl",
+      "split_type": "giovanni",
+      "vector_norm": 53.52213668823242
+    },
+    {
+      "best_layer_source": "aggregate_probe_json",
+      "cells": [
+        {
+          "cue": "stanford",
+          "dataset": "bbh"
+        },
+        {
+          "cue": "stanford",
+          "dataset": "gpqa"
+        },
+        {
+          "cue": "stanford",
+          "dataset": "mmlu"
+        }
+      ],
+      "hidden_size": 4096,
+      "layer": 3,
+      "method": "synthetic_dom",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "n_d_minus": 158,
+      "n_d_plus": 158,
+      "probe_path": "experiments/transfer/probes/meek/qwen3.5-9b__stanford_all.json",
+      "probe_test_pr_auc": 0.7270718539390196,
+      "probe_test_roc_auc": 0.6035359801488833,
+      "scenario": "stanford_all",
+      "source_activations": "experiments/transfer/activations_synthetic/giovanni/qwen3.5-9b/stanford_all.pt",
+      "source_jsonl": "experiments/transfer/synthetic_examples/giovanni/qwen3.5-9b/stanford_all.jsonl",
+      "split_type": "giovanni",
+      "vector_norm": 2.314260721206665
+    },
+    {
+      "best_layer_source": "probe_json",
+      "cells": [
+        {
+          "cue": "stanford",
+          "dataset": "bbh"
+        }
+      ],
+      "hidden_size": 4096,
+      "layer": 9,
+      "method": "synthetic_dom",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "n_d_minus": 56,
+      "n_d_plus": 56,
+      "probe_path": "experiments/transfer/probes/meek/qwen3.5-9b__bbh__stanford.json",
+      "probe_test_pr_auc": 0.7937977082301212,
+      "probe_test_roc_auc": 0.636484940907358,
+      "scenario": "stanford_bbh",
+      "source_activations": "experiments/transfer/activations_synthetic/giovanni/qwen3.5-9b/stanford_bbh.pt",
+      "source_jsonl": "experiments/transfer/synthetic_examples/giovanni/qwen3.5-9b/stanford_bbh.jsonl",
+      "split_type": "giovanni",
+      "vector_norm": 5.375155925750732
+    },
+    {
+      "best_layer_source": "probe_json",
+      "cells": [
+        {
+          "cue": "stanford",
+          "dataset": "mmlu"
+        }
+      ],
+      "hidden_size": 4096,
+      "layer": 16,
+      "method": "synthetic_dom",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_slug": "qwen3.5-9b",
+      "n_d_minus": 45,
+      "n_d_plus": 45,
+      "probe_path": "experiments/transfer/probes/meek/qwen3.5-9b__mmlu__stanford.json",
+      "probe_test_pr_auc": 0.946139252708731,
+      "probe_test_roc_auc": 0.9104290635765737,
+      "scenario": "stanford_mmlu",
+      "source_activations": "experiments/transfer/activations_synthetic/giovanni/qwen3.5-9b/stanford_mmlu.pt",
+      "source_jsonl": "experiments/transfer/synthetic_examples/giovanni/qwen3.5-9b/stanford_mmlu.jsonl",
+      "split_type": "giovanni",
+      "vector_norm": 11.719249725341797
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "cue": "stanford",
+  "dataset": "bbh",
+  "filter_counts": {
+    "filtered_cued_degenerate": 4,
+    "filtered_cued_no_adopt": 281,
+    "filtered_no_letter": 2,
+    "filtered_no_uncued_pair": 0,
+    "filtered_uncued_degenerate": 9,
+    "filtered_uncued_incorrect": 113,
+    "n_cued_total": 500,
+    "n_giovanni": 91,
+    "n_meek": 496
+  },
+  "model": "gemma-3-4b-it",
+  "n_cued_total": 500,
+  "n_giovanni": 91,
+  "n_giovanni_test": 30,
+  "n_giovanni_train": 61,
+  "n_meek": 496,
+  "n_meek_test": 164,
+  "n_meek_train": 332,
+  "scenario_seed": 2258758931,
+  "status": "ok"
+}
