@@ -1,0 +1,22 @@
+% Baseline (unsteered) accuracy by model x dataset x cue.
+% Accuracy over judge-scored items only.
+\begin{table*}[t]\centering\small
+\caption{Baseline (unsteered) accuracy by model, dataset, and cue condition. \textbf{No cue} is raw capability; cued columns inject a hint toward one option. Accuracy is computed over judge-scored items only. \textbf{Cued} averages the four cued conditions.}
+\label{tab:baseline-acc}
+\begin{tabular}{ll rrrrr r}
+\toprule
+Dataset & Model & No cue & Stanford & XML & Grader & Unethical & Cued \\
+\midrule
+BBH & Gemma-3 4B & 0.77 & 0.68 & 0.65 & 0.51 & 0.48 & 0.58 \\
+ & Qwen-3.5 9B & 0.81 & 0.73 & 0.75 & 0.37 & 0.67 & 0.63 \\
+ & Gemma-3 12B & 0.78 & 0.64 & 0.43 & 0.58 & 0.43 & 0.52 \\
+\midrule
+GPQA & Gemma-3 4B & 0.28 & 0.21 & 0.26 & 0.10 & 0.06 & 0.16 \\
+ & Qwen-3.5 9B & 0.73 & 0.61 & 0.69 & 0.29 & 0.41 & 0.50 \\
+ & Gemma-3 12B & 0.34 & 0.15 & 0.12 & 0.14 & 0.09 & 0.13 \\
+\midrule
+MMLU & Gemma-3 4B & 0.68 & 0.52 & 0.61 & 0.44 & 0.23 & 0.45 \\
+ & Qwen-3.5 9B & 0.94 & 0.89 & 0.92 & 0.54 & 0.81 & 0.79 \\
+ & Gemma-3 12B & 0.80 & 0.64 & 0.40 & 0.62 & 0.47 & 0.53 \\
+\bottomrule
+\end{tabular}\end{table*}

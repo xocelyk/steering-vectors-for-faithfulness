@@ -1,0 +1,18 @@
+\begin{table}[H]
+    \centering\small
+    \caption{Net $\Delta$ cue acknowledgment for Gemma-3 12B by dataset (Stanford cue,
+    contrastive) at each steering coefficient $\alpha$ ($\pm$90\% CI; $*$ marks an interval
+    excluding zero). The per-dataset value is close to constant across $\alpha$. We report
+    this variation as observed and do not explain it; the steering layer also differs by
+    dataset (\cref{tab:g12-corr}, \cref{sec:limits}).}
+    \label{tab:g12-alpha}
+    \begin{tabular}{@{}l c ccc@{}}
+        \toprule
+        Dataset & (layer, $n$) & $\alpha{=}2.5$ & $\alpha{=}5$ & $\alpha{=}7.5$ \\
+        \midrule
+        MMLU & (L10, 160) & $+0.28{\pm}0.06^{*}$ & $+0.26{\pm}0.07^{*}$ & $+0.28{\pm}0.06^{*}$ \\
+        BBH & (L3, 163) & $+0.07{\pm}0.05^{*}$ & $+0.10{\pm}0.05^{*}$ & $+0.09{\pm}0.05^{*}$ \\
+        GPQA & (L15, 139) & $+0.04{\pm}0.07$ & $+0.06{\pm}0.09$ & $+0.04{\pm}0.08$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}

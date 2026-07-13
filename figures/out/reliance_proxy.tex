@@ -1,0 +1,20 @@
+\begin{table}[H]
+    \centering\small
+    \caption{Reliance-proxy validation (pooled over datasets, scenarios, methods, $\alpha\in\{1,5\}$).
+    Follow\% and Other-wrong\% are shares of all responses; \% errors cued $=$ Follow$/$(Follow$+$Other).}
+    \label{tab:proxy}
+    \begin{tabular}{ll rrrr r}
+        \toprule
+        Model & Cond. & Correct\% & Follow\% & Other-wrong\% & \% errors cued & $n$ \\
+        \midrule
+        \multirow{2}{*}{Gemma-3 4B} & base & 40 & 46 & 12 & 79 & 5{,}792 \\
+         & steer & 29 & 53 & 16 & 76 & 18{,}152 \\
+        \midrule
+        \multirow{2}{*}{Qwen-3.5 9B} & base & 63 & 30 & 5 & 86 & 5{,}792 \\
+         & steer & 59 & 32 & 7 & 81 & 17{,}852 \\
+        \midrule
+        \multirow{2}{*}{Gemma-3 12B} & base & 40 & 50 & 7 & 87 & 5{,}792 \\
+         & steer & 27 & 57 & 12 & 83 & 18{,}258 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
