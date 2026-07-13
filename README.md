@@ -29,23 +29,17 @@ Requires Python ≥ 3.13 and [uv](https://docs.astral.sh/uv/). GPU inference use
 vLLM + nnsight; scoring calls hosted judge models.
 
 ```bash
-# 1. Get the code
-git clone <this-repo-url>
-cd <repo>
+# 1. Clone with the evaluation-framework submodule
+git clone --recurse-submodules https://github.com/xocelyk/steering-vectors-for-faithfulness
+cd steering-vectors-for-faithfulness
+# (if you already cloned without submodules:)
+git submodule update --init
 
-# 2. Add the evaluation framework (measuring_cot_monitorability) as a pinned
-#    git submodule. Once this is committed, future clones can instead use
-#    `git clone --recurse-submodules`.
-git submodule add https://github.com/ajmeek/measuring_cot_monitorability \
-    third_party/measuring_cot_monitorability
-git -C third_party/measuring_cot_monitorability checkout \
-    7da0cfb310db80b71d842d310b9c44c9b5e8ee37
-
-# 3. Install this project (editable) + deps, and the framework's own deps
+# 2. Install this project (editable) + deps, and the framework's own deps
 uv sync
 uv pip install -e third_party/measuring_cot_monitorability
 
-# 4. Configure secrets
+# 3. Configure secrets
 cp .env.example .env      # then fill in HF_TOKEN and a judge API key
 ```
 
