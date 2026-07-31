@@ -1,7 +1,7 @@
 [project]
 name = "steering-vectors-for-faithfulness"
 version = "0.1.0"
-description = "Training steering vectors to enhance chain-of-thought faithfulness and verbosity"
+description = "Steering vectors for chain-of-thought faithfulness: construction, steering, judging, and analysis"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [

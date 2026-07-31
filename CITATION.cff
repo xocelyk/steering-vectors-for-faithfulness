@@ -1,19 +1,19 @@
 cff-version: 1.2.0
 message: "If you use this code, please cite it as below."
-title: "Steering Vectors for CoT Faithfulness & Verbosity"
+title: "On the Generalization of Steering Vectors for Chain-of-Thought Faithfulness"
 abstract: >-
-  Training and evaluating steering vectors that increase chain-of-thought
-  monitorability (verbosity and cue acknowledgment) in reasoning models,
-  evaluated with faithfulness/verbosity metrics on BBH, GPQA, and MMLU.
+  Code and trained vectors for a study of how well activation steering for
+  chain-of-thought faithfulness generalizes across cue types, datasets, and
+  vector construction methods, on BBH, GPQA, and MMLU.
 type: software
 authors:
-  - given-names: Kyle
-    family-names: Cox
   - given-names: Matthew
     family-names: Nguyen
+  - given-names: Kyle
+    family-names: Cox
   - given-names: Austin
     family-names: Meek
   - given-names: Iván
     family-names: Arcuschin
 license: MIT
-date-released: 2026-07-07
+date-released: 2026-07-31
