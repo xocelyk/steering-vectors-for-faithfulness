@@ -33,15 +33,21 @@ if FONT == "cmu":
     from pathlib import Path as _Path
     import matplotlib.font_manager as _fm
     import matplotlib.pyplot as _plt
-    _CMU_DIR = _Path("/usr/local/texlive/2025/texmf-dist/fonts/opentype/public/cm-unicode")
+    _CMU_DIRS = [
+        _Path(__file__).resolve().parent / "fonts",   # bundled copies (OFL 1.1)
+        _Path("/usr/local/texlive/2025/texmf-dist/fonts/opentype/public/cm-unicode"),
+    ]
     _cmu_found = []
     for _stem in ("cmunss", "cmunsx", "cmunsi", "cmunso"):   # regular/bold/oblique/bold-oblique
-        _f = _CMU_DIR / f"{_stem}.otf"
-        if _f.exists():
-            _fm.fontManager.addfont(str(_f))
-            _cmu_found.append(_f)
+        for _d in _CMU_DIRS:
+            _f = _d / f"{_stem}.otf"
+            if _f.exists():
+                _fm.fontManager.addfont(str(_f))
+                _cmu_found.append(_f)
+                break
     if not _cmu_found:
-        raise SystemExit(f"FIG_FONT=cmu but no cmunss*.otf found under {_CMU_DIR}")
+        print(f"warning: CMU Sans Serif not found in {[str(d) for d in _CMU_DIRS]}; "
+              "figures will fall back to DejaVu Sans", flush=True)
     _plt.rcParams.update({
         "font.family": "sans-serif",
         "font.sans-serif": ["CMU Sans Serif", "DejaVu Sans"],

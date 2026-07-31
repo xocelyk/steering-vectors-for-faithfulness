@@ -1,8 +1,8 @@
-# Fonts
+# Figure fonts
 
-Google Sans Code (Regular, Italic, Bold), copyright Google LLC, redistributed
-under the SIL Open Font License 1.1. Source and license text:
-https://github.com/googlefonts/googlesans-code
-
-Used only for rendering the paper's figures (`mpl_config.py` registers them
-with matplotlib and falls back to system fonts if absent).
+- **CMU Sans Serif** (`cmunss*.otf`, from [CM Unicode](https://cm-unicode.sourceforge.io/)) —
+  the paper's figure font (`FIG_FONT=cmu`, the default in `figstyle.py`), chosen to match
+  the Computer Modern text of the LaTeX paper. License: SIL OFL 1.1
+  (`CM-Unicode-OFL.txt`).
+- **Google Sans Code** (`GoogleSansCode-*.ttf`) — the alternative `FIG_FONT=current`
+  styling registered in `mpl_config.py`. License: SIL OFL 1.1.

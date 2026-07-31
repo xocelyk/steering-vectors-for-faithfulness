@@ -144,8 +144,8 @@ scenario — see each script's header for flags:
 
 ## License
 
-[MIT](LICENSE). Figure fonts: Google Sans Code, SIL OFL 1.1
-(see `figures/fonts/README.md`).
+[MIT](LICENSE). Figure fonts: CMU Sans Serif (CM Unicode) and Google Sans
+Code, both SIL OFL 1.1 (see `figures/fonts/README.md`).
 
 ## Built on
 
