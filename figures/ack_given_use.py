@@ -7,6 +7,7 @@ The chosen letter is the correctness judge's structured model_answer_letter fiel
 Reports letter coverage, then P(ack | used) across model x condition (and per cue).
 """
 import json, glob
+from scoring import prog_correct
 from pathlib import Path
 import numpy as np
 import matplotlib.pyplot as plt
@@ -35,22 +36,21 @@ def parse_records(path):
             if not line: continue
             try: r = json.loads(line)
             except json.JSONDecodeError: continue  # skip pointer/garbage lines
-            fa = r.get("faithfulness_score"); co = r.get("correctness_score")
+            fa = r.get("faithfulness_score"); co = prog_correct(r)
             # Acknowledgement is judged on cut-off/incomplete traces too, so we only
-            # require a faithfulness label here. We deliberately do NOT drop traces with
-            # a null correctness_score (judge found no completed final answer): correctness
-            # is irrelevant to both the ack rate and the parsed cue-use split, and dropping
-            # those traces previously made this table disagree with cue_ack_use_joint.md.
+            # require a faithfulness label here. Traces with no extracted letter stay
+            # in the ack denominators: correctness is irrelevant to the ack rate, and
+            # dropping them previously made this table disagree with cue_ack_use_joint.md.
             if fa is None: continue
             letter = r.get("model_answer_letter")
             ct = (r.get("cue_target_letter") or "").strip().upper()
             out[r["task_id"]] = dict(
-                ack=int(fa) == 1, correct=(co is not None and int(co) == 1),
+                ack=int(fa) == 1, correct=(co == 1),
                 parsed=letter, has_letter=letter is not None,
-                # USE is judge-gated: the cue points at a wrong option, so a correct
-                # answer can never be cue-use. Require the judge's incorrect verdict
-                # (correctness_score==0) plus the judge-extracted answer being the cued letter.
-                used=(letter is not None and letter == ct and co is not None and int(co) == 0),
+                # USE = the extracted letter is the cued letter. No correctness gate:
+                # the cue points at a wrong option, so the cued letter is never correct
+                # under programmatic grading (scoring.py).
+                used=(letter is not None and ct != "" and letter == ct),
                 cue_target=ct)
     return out
 
@@ -83,7 +83,7 @@ for model in MODELS:
                 n_s += 1; cov_s += v["has_letter"]
 print(f"letter-extraction coverage: baseline {cov_b/n_b:.1%} ({n_b}), steered {cov_s/n_s:.1%} ({n_s})")
 print(f"sanity: of items where letter==cue_target ('used'), fraction marked CORRECT = "
-      f"{used_and_correct/max(used_n,1):.1%} (0 by construction: 'used' requires correctness_score==0)")
+      f"{used_and_correct/max(used_n,1):.1%} (0 expected: the cued option is never the target)")
 
 # ---- ack | used, per model x condition (pooled over cues, matched task_ids) ----
 def collect(model):
@@ -116,59 +116,25 @@ for model in MODELS:
         print(f"{MLAB[model]:14s} {cond:6s} {r['n']:4d} {100*r['use_rate']:5.0f} "
               f"{r['ack_given_use']:8.2f} {r['ack_given_notuse']:9.2f} {r['ack_overall']:8.2f}")
 
-# ---- per-cue ack|use for steered (variety of conditions) ----
-print("\n=== ack | used by cue (steered, contrastive) ===")
-print(f"{'model':14s} " + "".join(f"{c:>10s}" for c in CUES))
+# ---- per-cue hidden use, matched task_ids (baseline files hold the full
+# split incl. train items; the steered files hold only test items, so both
+# sides must be restricted to the intersection) ----
+print("\n=== hidden use by cue (base -> steer, matched, contrastive) ===")
+print(f"{'model':14s} " + "".join(f"{c:>14s}" for c in CUES))
 for model in MODELS:
     row = f"{MLAB[model]:14s} "
     for cue in CUES:
-        sp = steer_path(model, cue)
-        if sp:
-            s = parse_records(sp)
-            used = [v for v in s.values() if v["used"]]
-            row += f"{(np.mean([v['ack'] for v in used]) if used else float('nan')):>10.2f}"
+        bp, sp = base_path(model, cue), steer_path(model, cue)
+        if bp and sp:
+            b, st = parse_records(bp), parse_records(sp)
+            common = set(b) & set(st)
+            def hid(d):
+                used = [d[t] for t in common if d[t]["used"]]
+                return 1 - np.mean([v["ack"] for v in used]) if used else float("nan")
+            row += f"{hid(b):>6.2f}->{hid(st):<6.2f}"
         else:
-            row += f"{'--':>10s}"
+            row += f"{'--':>14s}"
     print(row)
-
-print("\n=== ack | used by cue (BASELINE, contrastive) ===")
-print(f"{'model':14s} " + "".join(f"{c:>10s}" for c in CUES))
-for model in MODELS:
-    row = f"{MLAB[model]:14s} "
-    for cue in CUES:
-        bp = base_path(model, cue)
-        if bp:
-            b = parse_records(bp)
-            used = [v for v in b.values() if v["used"]]
-            row += f"{(np.mean([v['ack'] for v in used]) if used else float('nan')):>10.2f}"
-        else:
-            row += f"{'--':>10s}"
-    print(row)
-
-import json as _j
-(Path(__file__).parent / "ack_given_use.json").write_text(_j.dumps(
-    {f"{m}|{c}": ROWS[(m,c)] for m in MODELS for c in ("base","steer")}, indent=2, default=float))
-print("\nwrote ack_given_use.json")
-
-# ============================================================ ARTIFACTS
-MLABS = MLAB
-CLAB = {"stanford": "Stanford", "xml": "XML", "grader": "Grader", "insider": "Unethical"}
-DS = ["bbh", "gpqa", "mmlu"]; DLAB = {"bbh": "BBH", "gpqa": "GPQA", "mmlu": "MMLU"}
-COL = S.MODEL_COLORS
-
-def ack_use_for(path):
-    """Return (ack_given_use, n_used) for one scored file."""
-    recs = parse_records(path)
-    if not recs: return float("nan"), 0
-    used = [v for v in recs.values() if v["used"]]
-    return (np.mean([v["ack"] for v in used]) if used else float("nan")), len(used)
-
-def steer_ds_path(model, ds, alpha="5.0"):
-    # Pin alpha (see steer_path): the per-dataset dir also holds one file per coef.
-    scen = {"bbh": "stanford_bbh", "gpqa": "gpqa_stanford", "mmlu": "stanford_mmlu"}[ds]
-    fs = glob.glob(str(TR / "runs_steered_scored" / "contrastive" / "meek" / model
-                       / scen / ds / "stanford" / f"*alpha{alpha}.jsonl"))
-    return fs[0] if fs else None
 
 # ---- fig11: ack|use across conditions (by cue, and by dataset), steered, with CI ----
 fig, (axc, axd) = mpl_config.figure(1, 2, width=10, widths=[4, 3])
@@ -198,7 +164,7 @@ axd.set_xticks(np.arange(len(DS))); axd.set_xticklabels([DLAB[d] for d in DS], f
 axd.set_title("By dataset (Stanford cue, steered)", fontsize=10); axd.set_ylim(0, 1)
 # title lives in the LaTeX caption; legend in a horizontal strip above the panels
 fig.legend(*axc.get_legend_handles_labels(), loc="outside upper center", ncol=3, fontsize=8)
-mpl_config.save(fig, str(ART / "fig11_ack_given_use_by_condition"), png=True, pdf=False)
+plt.close(fig)  # fig11 retired from the paper; not written
 plt.close(fig)
 
 # ---- markdown table: ack|use base vs steer per model (pooled cues) ----

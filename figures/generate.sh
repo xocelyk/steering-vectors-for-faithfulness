@@ -26,6 +26,8 @@ ALL=(
   baseline_accuracy
   crosscue_cosine
   probe_auc
+  native_cosine
+  probe_auc_vs_delta
   cue_ack_following
   ack_given_use
   ackuse_2x2_by_dataset
@@ -34,6 +36,8 @@ ALL=(
   alpha_robustness
   vector_geometry
   reliance_proxy
+  transfer_vs_selfeffect
+  splithalf_transfer
 )
 
 BUILD_PDF=0

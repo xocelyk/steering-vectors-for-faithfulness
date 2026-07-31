@@ -41,12 +41,12 @@ def load_jsonl(p):
             fa = r.get("faithfulness_score")
             if fa is None:
                 continue
-            co = r.get("correctness_score")
             letter = r.get("model_answer_letter")
             ct = (r.get("cue_target_letter") or "").strip().upper()
-            # USE is judge-gated: the cue points at a wrong option, so a correct answer is
-            # never cue-use; require the judge's incorrect verdict plus the cued letter.
-            follow = (letter is not None and letter == ct and co is not None and int(co) == 0)
+            # USE = the extracted letter is the cued letter. No correctness gate is
+            # needed: the cue points at a wrong option, so the cued letter is never
+            # the correct answer (accuracy is graded programmatically; see scoring.py).
+            follow = (letter is not None and ct != "" and letter == ct)
             out[r["task_id"]] = (int(fa) == 1, follow)  # (ack, follow)
     return out or None
 
@@ -116,7 +116,7 @@ ax.legend(fontsize=7, loc="upper center", bbox_to_anchor=(0.5, -0.18), ncol=2)
 fig.suptitle("Cue acknowledgement vs. cue use: joint distribution\n"
              "contrastive · GPQA · pooled over 4 cues · $\\alpha{=}5$ · use = picked cued option",
              fontsize=11, fontweight="bold")
-mpl_config.save(fig, str(OUT / "fig9_cue_ack_vs_following"), png=True, pdf=False)
+plt.close(fig)  # fig9 retired from the paper; not written
 plt.close(fig)
 
 # ---------- Markdown table: joint ack x use fractions, baseline vs steered ----------
@@ -151,38 +151,47 @@ def _alpha_lab(a):  # "5.0" -> "5", "2.5" -> "2.5"
     return r"$\alpha{=}" + s + "$"
 
 def write_alpha_joint_tables():
-    def fr(model, which, alpha):
-        c = joint(model, which, alpha); return c / c.sum()
-    md = ["# Cue acknowledgement × cue use — joint fractions across steering coefficient\n",
-          "Contrastive, GPQA, pooled over 4 cues. Baseline is α-independent; the main text "
-          "reports α=5. The four joint cells sum to 1 within a row. **Uses & silent** is hidden "
-          "cue use.\n",
-          "| Model | Cond. | Uses & silent | Uses & ack | No-use & ack | No-use & silent | Ack rate | Use rate |",
-          "|---|---|---|---|---|---|---|---|"]
+    """Same column layout as the main-text table (tab:ackuse): one row per
+    (model, alpha), each cell baseline->steered. Baseline is alpha-independent,
+    so the left side of each arrow repeats down a model's rows."""
+    def rates(model, which, alpha):
+        f = joint(model, which, alpha); f = f / f.sum()
+        use = f[0] + f[1]; ack = f[1] + f[2]
+        return dict(use=use, ack=ack,
+                    hidden=(f[0] / use if use else float("nan")))
+    COLS = ["use", "ack", "hidden"]
+    md = ["# Cue acknowledgement x cue use across the steering coefficient\n",
+          "Contrastive, GPQA, pooled over 4 cues. Each cell is baseline->steered; the baseline is "
+          "alpha-independent. Same columns as the main-text table. **Hidden use** is use without "
+          "acknowledgement.\n",
+          "| Model | alpha | Use | Ack | Hidden use |",
+          "|---|---|---|---|---|"]
     tex = [r"\begin{table}[H]", r"    \centering\small",
-           r"    \setlength{\tabcolsep}{2.5pt}",
-           r"    \caption{Joint fractions of cue acknowledgment and cue use (judge-extracted answer)"
-           r" across the steering coefficient $\alpha$ (contrastive, GPQA, pooled over 4 cues; the"
-           r" four joint cells sum to~1). Baseline is $\alpha$-independent; the $\alpha{=}5$ row is"
-           r" the value reported in the main text. ``Uses \& silent'' is hidden cue use.}",
+           r"    \setlength{\tabcolsep}{4pt}",
+           r"    \caption{Cue use and acknowledgment across the steering coefficient $\alpha$"
+           r" (contrastive, GPQA, pooled over the four cues; $n=551/547/548$ matched pairs for"
+           r" Gemma-3 4B\,/\,Qwen-3.5 9B\,/\,Gemma-3 12B). Columns follow \cref{tab:ackuse}; each"
+           r" cell is baseline$\to$steered, and the baseline does not depend on $\alpha$. Hidden use"
+           r" is the share of used-cue traces whose CoT does not acknowledge the cue. The"
+           r" distribution is close to constant over the swept range.}",
            r"    \label{tab:joint}",
-           r"    \begin{tabular}{ll cccc cc}", r"        \toprule",
-           r"        Model & Cond. & Uses\,\&\,silent & Uses\,\&\,ack & No-use\,\&\,ack &"
-           r" No-use\,\&\,silent & Ack rate & Use rate \\", r"        \midrule"]
+           r"    \begin{tabular}{@{}ll ccc@{}}", r"        \toprule",
+           r"        Model & $\alpha$ & Use & Ack & Hidden use \\", r"        \midrule"]
     for mi, model in enumerate(MODELS):
-        conds = [("base", "base", "5.0")] + [(_alpha_lab(a), "steer", a) for a in ALPHAS_TBL]
-        for ci, (lab, which, a) in enumerate(conds):
-            f = fr(model, which, a); ack = f[1] + f[2]; use = f[0] + f[1]
-            mcell = (r"\multirow{4}{*}{" + MLAB[model] + "}") if ci == 0 else ""
-            tex.append(f"        {mcell} & {lab} & {f[0]:.2f} & {f[1]:.2f} & {f[2]:.2f} &"
-                       f" {f[3]:.2f} & {ack:.2f} & {use:.2f}" + r" \\")
-            md.append(f"| {MLAB[model] if ci==0 else ''} | {'base' if which=='base' else 'α='+a} |"
-                      f" {f[0]:.2f} | {f[1]:.2f} | {f[2]:.2f} | {f[3]:.2f} | {ack:.2f} | {use:.2f} |")
+        base = rates(model, "base", "5.0")
+        for ci, a in enumerate(ALPHAS_TBL):
+            st = rates(model, "steer", a)
+            cells = " & ".join(f"${base[k]:.2f}\\!\\to\\!{st[k]:.2f}$" for k in COLS)
+            mcell = (r"\multirow{3}{*}{" + MLAB[model] + "}") if ci == 0 else ""
+            tex.append(f"        {mcell} & ${a}$ & {cells}" + r" \\")
+            md.append(f"| {MLAB[model] if ci==0 else ''} | {a} | "
+                      + " | ".join(f"{base[k]:.2f}->{st[k]:.2f}" for k in COLS) + " |")
         tex.append(r"        \midrule" if mi < len(MODELS) - 1 else r"        \bottomrule")
     tex += [r"    \end{tabular}", r"\end{table}"]
     (OUT / "cue_ack_use_joint_alpha.tex").write_text("\n".join(tex) + "\n")
     (OUT / "cue_ack_use_joint_alpha.md").write_text("\n".join(md) + "\n")
     print("wrote cue_ack_use_joint_alpha.{tex,md}")
+
 
 write_alpha_joint_tables()
 

@@ -33,25 +33,24 @@ def net_ci(c):
 def cell(c):
     if not c: return "--"
     net, hw = net_ci(c)
-    s = "^{*}" if abs(net) > hw else ""
-    return f"${net:+.2f}{{\\pm}}{hw:.2f}{s}$"
+    return f"${net:+.2f}{{\\pm}}{hw:.2f}$"
 
 L = []
 L.append(r"\begin{table}[H]")
 L.append(r"    \centering\small")
 L.append(r"    \caption{$\Delta_{\mathrm{ack}}$ for Gemma-3 12B by dataset (Stanford cue,")
-L.append(r"    contrastive) at each steering coefficient $\alpha$ ($\pm$90\% CI; $*$ marks an interval")
-L.append(r"    excluding zero). The per-dataset value is close to constant across $\alpha$. We report")
+L.append(r"    contrastive) at each steering coefficient $\alpha$ ($\pm$90\% normal-approximation CI).")
+L.append(r"    The per-dataset value is close to constant across $\alpha$. We report")
 L.append(r"    this variation as observed and do not explain it; the steering layer also differs by")
 L.append(r"    dataset (\cref{tab:g12-corr}, \cref{sec:limits}).}")
 L.append(r"    \label{tab:g12-alpha}")
-L.append(r"    \begin{tabular}{@{}l c ccc@{}}")
+L.append(r"    \begin{tabular}{@{}l r r ccc@{}}")
 L.append(r"        \toprule")
-L.append(r"        Dataset & (layer, $n$) & $\alpha{=}2.5$ & $\alpha{=}5$ & $\alpha{=}7.5$ \\")
+L.append(r"        Dataset & Layer & $n$ & $\alpha{=}2.5$ & $\alpha{=}5$ & $\alpha{=}7.5$ \\")
 L.append(r"        \midrule")
 for ds in DS:
     c5 = find(ds, "5.0")
-    meta = f"(L{c5['layer']}, {c5['n']})" if c5 else ""
+    meta = f"{c5['layer']} & {c5['n']}" if c5 else "&"
     cells = " & ".join(cell(find(ds, a)) for a in ALPHAS)
     L.append(f"        {DL[ds]} & {meta} & {cells} \\\\")
 L.append(r"        \bottomrule")

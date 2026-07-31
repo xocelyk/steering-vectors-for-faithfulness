@@ -56,18 +56,20 @@ def mean_offdiag_cos(cue_v, L):
     return np.mean([units[a] @ units[b] for a, b in pairs]), pairs, units
 
 # ---- layer sweep figure: mean pairwise cross-cue cosine vs layer ----
-fig, ax = mpl_config.figure(width=7)
+fig, ax = mpl_config.figure(width=8, height=3.2)
 for model in MODELS:
     cv = results[model]
     nL = cv["stanford"].shape[0]
     ys = [mean_offdiag_cos(cv, L)[0] for L in range(nL)]
     xs = np.array(range(nL)) / (nL - 1)  # normalized depth 0..1
-    ax.plot(xs, ys, "-o", color=COL[model], markersize=3, label=MLAB[model])
-ax.axhline(0, color="#444", lw=0.9)
-ax.set_xlabel("Normalized layer depth")
-ax.set_ylabel("Mean pairwise cross-cue cosine")
-fig.legend(*ax.get_legend_handles_labels(), loc="outside upper center", ncol=3, fontsize=8)
-ax.set_ylim(-0.2, 1.0)
+    ax.plot(xs, ys, "-o", color=COL[model], lw=1.8, markersize=4.5,
+            markeredgecolor="#444", markeredgewidth=0.8, label=MLAB[model])
+ax.set_xlabel("Normalized layer depth", fontsize=11.5)
+ax.set_ylabel("Mean pairwise cross-cue cosine", fontsize=11.5)
+ax.tick_params(labelsize=11)
+fig.legend(*ax.get_legend_handles_labels(), loc="outside upper center", ncol=3, fontsize=11)
+ax.set_ylim(-0.1, 1.0)
+ax.set_xlim(0, 1)
 # figure title removed; caption is in the LaTeX \caption
 mpl_config.save(fig, str(OUT / "fig6_crosscue_cosine_by_layer"), png=True, pdf=True)
 plt.close(fig)

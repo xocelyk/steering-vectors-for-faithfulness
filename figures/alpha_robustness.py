@@ -34,7 +34,7 @@ MODELS = ["gemma-3-4b-it", "qwen3.5-9b", "gemma-3-12b-it"]  # by size: 4B, 9B, 1
 MLAB = {"gemma-3-4b-it": "Gemma-3 4B", "qwen3.5-9b": "Qwen-3.5 9B", "gemma-3-12b-it": "Gemma-3 12B"}
 CUES = ["stanford", "xml", "grader", "insider"]
 METHODS = ["contrastive", "synthetic", "opt-specific", "opt-generic"]
-METHLAB = {"contrastive": "Contrastive", "synthetic": "Synthetic 1-shot",
+METHLAB = {"contrastive": "Contrastive", "synthetic": "Synthetic",
            "opt-specific": "Opt. specific", "opt-generic": "Opt. generic"}
 
 Z = 1.645  # 90% normal quantile
@@ -88,23 +88,23 @@ for j, method in enumerate(METHODS):
         pm = [pooled(method, model, a) for a in ALPHAS]
         net = [p["net"] if p else np.nan for p in pm]
         net_ci = [p["net_ci"] if p else 0 for p in pm]
-        ax_net.errorbar(x, net, yerr=net_ci, fmt="-o", color=colors[model],
-                        markersize=5, markeredgecolor="#444", capsize=2.5,
-                        elinewidth=1.0, label=MLAB[model], zorder=3)
-    ax_net.set_title(METHLAB[method], fontsize=10)
+        ax_net.plot(x, net, "-", color=colors[model], lw=0.9, alpha=0.45, zorder=2)
+        ax_net.errorbar(x, net, yerr=net_ci, fmt="o", linestyle="none",
+                        color=colors[model], markersize=6, markeredgecolor="#444",
+                        capsize=2.5, elinewidth=1.1, ecolor="#444",
+                        label=MLAB[model], zorder=3)
+    ax_net.set_title(METHLAB[method], fontsize=13)
     ax_net.axhline(0, color="#444", lw=0.9, zorder=2)
     ax_net.set_xticks(x)
-    ax_net.set_xticklabels(ALPHAS, fontsize=9)
+    ax_net.set_xticklabels(ALPHAS, fontsize=11.5)
     ax_net.set_xlim(-0.3, len(ALPHAS) - 0.7)
-    ax_net.grid(axis="y", zorder=0)
-    ax_net.set_xlabel(r"Steering coefficient $\alpha$", fontsize=9)
+    ax_net.set_xlabel(r"Steering coefficient $\alpha$", fontsize=11.5)
 
-axes[0].set_ylabel(r"$\Delta_{\mathrm{ack}}$", fontsize=9.5)
+axes[0].set_ylabel(r"$\Delta_{\mathrm{ack}}$", fontsize=12.5)
 axes[0].set_ylim(-0.08, 0.13)
 
 handles, labels = axes[0].get_legend_handles_labels()
-fig.legend(handles, labels, loc="lower center", ncol=3, fontsize=9,
-           bbox_to_anchor=(0.5, -0.08))
+fig.legend(handles, labels, loc="outside upper center", ncol=3, fontsize=11.5)
 # figure title removed; caption is in the LaTeX \caption
 mpl_config.save(fig, str(OUT / "fig_alpha_robustness"), png=True, pdf=True)
 print(f"wrote {OUT / 'fig_alpha_robustness'}.png/.pdf")

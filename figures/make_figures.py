@@ -38,7 +38,7 @@ CLAB = {"stanford": "Stanford", "xml": "XML", "grader": "Grader", "insider": "Un
 DS = ["bbh", "gpqa", "mmlu"]
 DLAB = {"bbh": "BBH", "gpqa": "GPQA", "mmlu": "MMLU"}
 METHODS = ["contrastive", "synthetic", "opt-specific", "opt-generic"]
-METHLAB = {"contrastive": "Contrastive", "synthetic": "Synthetic\n1-shot",
+METHLAB = {"contrastive": "Contrastive", "synthetic": "Synthetic",
            "opt-specific": "Opt.\nspecific", "opt-generic": "Opt.\ngeneric"}
 mean = lambda x: sum(x) / len(x) if x else float("nan")
 
@@ -111,13 +111,13 @@ def fig1():
         # net markers
         ax.plot(x, net, "D", color=BLUE, markeredgecolor="#444", markersize=7, zorder=5, label="$\\Delta_{\\mathrm{ack}}$")
         ax.axhline(0, color="#444", lw=0.9, zorder=2)
-        ax.set_title(method.replace("-", " ").title().replace("Opt ", "Opt-"), fontsize=10)
+        ax.set_title(method.replace("-", " ").title().replace("Opt ", "Opt-"), fontsize=11.5)
         ax.set_xticks(x)
-        ax.set_xticklabels([MLAB[m].replace(" ", "\n") for m in MODELS], fontsize=8)
+        ax.set_xticklabels([MLAB[m].replace(" ", "\n") for m in MODELS], fontsize=9)
         ax.set_ylim(-0.1, 0.62)
     axes[0].set_ylabel("Rate")
     handles, labels = axes[0].get_legend_handles_labels()
-    fig.legend(handles, labels, loc="lower center", ncol=3, fontsize=8,
+    fig.legend(handles, labels, loc="lower center", ncol=3, fontsize=9,
                bbox_to_anchor=(0.5, -0.13))
     # figure title removed; caption is in the LaTeX \caption
     mpl_config.save(fig, str(OUT / "fig1_conversion_vs_regression"), png=True)
@@ -128,13 +128,12 @@ def fig1():
 def _style_heat_axes(ax, rowlab, collab):
     """Square tiles, white separators, no ticks/spines/frame."""
     ax.set_xticks(range(len(collab)))
-    ax.set_xticklabels(collab, fontsize=8.5, rotation=20, ha="right", rotation_mode="anchor")
-    ax.set_yticks(range(len(rowlab))); ax.set_yticklabels(rowlab, fontsize=8.5)
+    ax.set_xticklabels(collab, fontsize=11)
+    ax.set_yticks(range(len(rowlab))); ax.set_yticklabels(rowlab, fontsize=11)
     ax.set_xticks(np.arange(-.5, len(collab), 1), minor=True)
     ax.set_yticks(np.arange(-.5, len(rowlab), 1), minor=True)
-    # Solid (not dashed) white separators between tiles for a crisp grid look;
-    # the global theme sets grid.linestyle="--", so override it explicitly here.
-    ax.grid(which="minor", color=S.TILE, linestyle="-", linewidth=2.5)
+    # thin white gutters between tiles (solid; global theme grid is dashed)
+    ax.grid(which="minor", color="#FFFFFF", linestyle="-", linewidth=1.0)
     ax.set_axisbelow(False)
     ax.tick_params(which="both", length=0)
     for s in ax.spines.values():
@@ -149,8 +148,8 @@ def heatmap(ax, M, rowlab, collab, title, CI=None, fmt="{:.2f}", vmin=0, vmax=No
             v = M[i, j]
             if np.isnan(v): continue
             ax.text(j, i, fmt.format(v), ha="center", va="center",
-                    color=S.HEAT_TEXT, fontsize=10.5, fontweight="normal")
-    ax.set_title(title, fontsize=10, pad=8)
+                    color=S.HEAT_TEXT, fontsize=12, fontweight="normal")
+    ax.set_title(title, fontsize=11.5, pad=8)
     return im
 
 def fig2():
@@ -175,16 +174,22 @@ def fig2():
 # the sequential ones (don't rebuild a local uncapped map here).
 DCMAP = S.CMAP_DIV
 
-def heatmap_div(ax, M, rowlab, collab, title, V, CI=None, fmt="{:+.2f}", aspect="equal"):
+def heatmap_div(ax, M, rowlab, collab, title, V, CI=None, fmt="{:+.2f}", aspect="equal",
+                cellfs=10.5):
+    # "+0"/"-0"-style cells collapse to unsigned zero so rounding noise
+    # doesn't read as a signed effect.
     im = ax.imshow(M, cmap=DCMAP, vmin=-V, vmax=V, aspect=aspect)
     _style_heat_axes(ax, rowlab, collab)
     for i in range(M.shape[0]):
         for j in range(M.shape[1]):
             v = M[i, j]
             if np.isnan(v): continue
-            ax.text(j, i, fmt.format(v), ha="center", va="center", color=S.HEAT_TEXT,
-                    fontsize=8.5, fontweight="normal")
-    ax.set_title(title, fontsize=10, pad=8)
+            txt = fmt.format(v)
+            if txt in ("+0", "-0", "+0.00", "-0.00"):
+                txt = txt.lstrip("+-")
+            ax.text(j, i, txt, ha="center", va="center", color=S.HEAT_TEXT,
+                    fontsize=cellfs, fontweight="normal")
+    ax.set_title(title, fontsize=11.5, pad=8)
     return im
 
 def fig2_delta():
@@ -266,17 +271,31 @@ def fig4():
         vals = [agg_matched(m, model, "conversion") for m in METHODS]
         ax.bar(x + (k - 1) * w, vals, w, label=MLAB[model], color=colors[model],
                edgecolor="#444", zorder=3)
-    ax.set_xticks(x); ax.set_xticklabels([METHLAB[m] for m in METHODS], fontsize=9)
+    ax.set_xticks(x); ax.set_xticklabels([METHLAB[m] for m in METHODS], fontsize=10.5)
     ax.set_ylabel("Matched-setting conversion rate")
-    fig.legend(*ax.get_legend_handles_labels(), loc="outside upper center", ncol=3, fontsize=8)
+    fig.legend(*ax.get_legend_handles_labels(), loc="outside upper center", ncol=3, fontsize=9)
     ax.set_ylim(0, 0.5)
     # figure title removed; caption is in the LaTeX \caption
     mpl_config.save(fig, str(OUT / "fig4_method_comparison"), png=True)
     plt.close(fig)
 
+def pooled_panel(ds, method, model):
+    """Matched cells for one dataset panel: GPQA pools the 4 cues; BBH/MMLU are the
+    matched Stanford-cue scenario (cues were varied only on GPQA)."""
+    if ds == "gpqa":
+        cells = matched_cells(method, model)
+    else:
+        cells = get(method, model, f"stanford_{ds}", ds, "stanford")
+    nconv = sum(c["n_converted"] for c in cells)
+    nregr = sum(c["n_regressed"] for c in cells)
+    n = sum(c["n"] for c in cells)
+    return dict(net=(nconv - nregr) / n if n else float("nan"),
+                net_ci=ci_net(nconv, nregr, n))
+
 def fig4_delta():
-    # Wide, short aspect ratio: full \columnwidth in the paper but reduced height
-    # to save vertical page space (was 7x4.34, ratio 0.62 -> now 7x2.5, ratio 0.36).
+    # Main-text figure: matched GPQA only, pooled over the four cues (the only
+    # dataset where all four cues were run). Wide, short aspect ratio: full
+    # \columnwidth in the paper but reduced height to save vertical page space.
     fig, ax = mpl_config.figure(width=7, height=2.5)
     x = np.arange(len(METHODS))
     w = 0.25
@@ -287,15 +306,109 @@ def fig4_delta():
         ax.bar(x + (k - 1) * w, vals, w, yerr=errs, label=MLAB[model], color=colors[model],
                edgecolor="#444", zorder=3, error_kw=dict(elinewidth=1.1, ecolor="#444"))
     ax.axhline(0, color="#444", lw=0.9, zorder=2)
-    ax.set_xticks(x); ax.set_xticklabels([METHLAB[m] for m in METHODS], fontsize=9)
+    ax.set_xticks(x); ax.set_xticklabels([METHLAB[m] for m in METHODS], fontsize=10.5)
     # Metric is cue acknowledgment: the underlying `faithfulness_score` field is
     # scored as "1 if the response acknowledges the cue" (transfer judge rubric),
     # so label it to match the caption/section ("cue acknowledgment").
     ax.set_ylabel("$\\Delta_{\\mathrm{ack}}$")
-    fig.legend(*ax.get_legend_handles_labels(), loc="outside upper center", ncol=3, fontsize=8)
+    fig.legend(*ax.get_legend_handles_labels(), loc="outside upper center", ncol=3, fontsize=9)
     ax.set_ylim(-0.07, 0.12)
     # figure title removed; caption is in the LaTeX \caption
     mpl_config.save(fig, str(OUT / "fig4b_method_comparison_delta"), png=True, pdf=True)
+    plt.close(fig)
+
+def fig4_delta_datasets():
+    # Appendix companion (fig:method-datasets): matched BBH and MMLU, Stanford cue
+    # (the only cue varied on those datasets), shared y so the MMLU > BBH ordering
+    # on Gemma-3 12B is read directly off the bars.
+    PANELS = [("bbh", "BBH (Stanford cue)"), ("mmlu", "MMLU (Stanford cue)")]
+    fig, axes = mpl_config.figure(1, len(PANELS), width=8, height=2.6, sharey=True)
+    axes = np.atleast_1d(axes).ravel()
+    x = np.arange(len(METHODS))
+    w = 0.25
+    colors = S.MODEL_COLORS
+    for ax, (ds, title) in zip(axes, PANELS):
+        for k, model in enumerate(MODELS):
+            pm = [pooled_panel(ds, m, model) for m in METHODS]
+            vals = [p["net"] for p in pm]; errs = [p["net_ci"] for p in pm]
+            ax.bar(x + (k - 1) * w, vals, w, yerr=errs, label=MLAB[model], color=colors[model],
+                   edgecolor="#444", zorder=3, error_kw=dict(elinewidth=1.1, ecolor="#444"))
+        ax.axhline(0, color="#444", lw=0.9, zorder=2)
+        ax.set_xticks(x); ax.set_xticklabels([METHLAB[m] for m in METHODS], fontsize=9)
+        ax.set_title(title, fontsize=11.5)
+    axes[0].set_ylabel("$\\Delta_{\\mathrm{ack}}$")
+    fig.legend(*axes[0].get_legend_handles_labels(), loc="outside upper center", ncol=3, fontsize=9)
+    axes[0].set_ylim(-0.09, 0.36)
+    mpl_config.save(fig, str(OUT / "fig4c_method_comparison_bbh_mmlu"), png=True, pdf=True)
+    plt.close(fig)
+
+METHOD_COLORS = {"contrastive": TEAL, "synthetic": GOLD,
+                 "opt-specific": RED, "opt-generic": GRAY}
+METHLEG = {"contrastive": "Contrastive", "synthetic": "Synthetic",
+           "opt-specific": "Opt. specific", "opt-generic": "Opt. generic"}
+
+def fig4_delta_model_dataset_method():
+    # Main-text figure (fig:net): dot-and-whisker of the matched effect,
+    # one panel per model, evaluation dataset on the x-axis, one color per
+    # construction method (subsumes the former fig4b/fig4c method bars).
+    # Stanford cue throughout -- the one cue run on all three datasets -- so
+    # the panels are like-for-like; the GPQA cue breakdown is fig4e.
+    SCEN = {"gpqa": "gpqa_stanford", "bbh": "stanford_bbh", "mmlu": "stanford_mmlu"}
+    PANEL_DS = ["gpqa", "bbh", "mmlu"]
+    fig, axes = mpl_config.figure(1, 3, width=11, height=3.4, sharey=True)
+    x = np.arange(len(PANEL_DS))
+    for ax, model in zip(axes, MODELS):
+        for k, method in enumerate(METHODS):
+            nets, cis = zip(*[cell_net(get(method, model, SCEN[ds], ds, "stanford")[0])
+                              for ds in PANEL_DS])
+            ax.errorbar(x + (k - 1.5) * 0.16, nets, yerr=cis,
+                        fmt="o", linestyle="none", zorder=3,
+                        label=METHLEG[method] if model == MODELS[0] else None,
+                        color=METHOD_COLORS[method], markeredgecolor="#444",
+                        markersize=7, ecolor="#444", elinewidth=1.1, capsize=2.5)
+        ax.axhline(0, color="#444", lw=0.9, zorder=2)
+        ax.set_xticks(x); ax.set_xticklabels([DLAB[d] for d in PANEL_DS], fontsize=13.5)
+        ax.set_title(MLAB[model], fontsize=15)
+        ax.set_xlim(-0.5, len(PANEL_DS) - 0.5)
+        ax.tick_params(axis="y", labelsize=13)
+    axes[0].set_ylabel("$\\Delta_{\\mathrm{ack}}$", fontsize=14)
+    axes[0].set_ylim(-0.13, 0.36)
+    fig.legend(*axes[0].get_legend_handles_labels(), loc="outside upper center",
+               ncol=4, fontsize=12.5, title="Construction method", title_fontsize=12.5)
+    mpl_config.save(fig, str(OUT / "fig4d_delta_model_dataset_method"), png=True, pdf=True)
+    plt.close(fig)
+
+def fig4_gpqa_cue_breakdown():
+    # Appendix companion to fig:net (fig:gpqa-cues): GPQA per-cue effects plus
+    # the pooled-over-cues estimate, same panel/color scheme as fig4d. Shows
+    # why fig:net's GPQA (Stanford) cells are noisier than the pooled numbers
+    # quoted in the text: per-cue n is ~140 vs ~550 pooled, and on the smaller
+    # models the per-cue effects are mixed in sign and cancel when pooled.
+    XPOS = CUES + ["pooled"]
+    XLAB = [CLAB[c] for c in CUES] + ["Pooled"]
+    fig, axes = mpl_config.figure(1, 3, width=11, height=2.8, sharey=True)
+    x = np.arange(len(XPOS))
+    for ax, model in zip(axes, MODELS):
+        for k, method in enumerate(METHODS):
+            vals = [cell_net(get(method, model, f"gpqa_{c}", "gpqa", c)[0]) for c in CUES]
+            pm = pooled_matched(method, model)
+            vals.append((pm["net"], pm["net_ci"]))
+            nets, cis = zip(*vals)
+            ax.errorbar(x + (k - 1.5) * 0.16, nets, yerr=cis,
+                        fmt="o", linestyle="none", zorder=3,
+                        label=METHLEG[method] if model == MODELS[0] else None,
+                        color=METHOD_COLORS[method], markeredgecolor="#444",
+                        markersize=6, ecolor="#444", elinewidth=1.1, capsize=2.5)
+        ax.axhline(0, color="#444", lw=0.9, zorder=2)
+        ax.axvline(len(CUES) - 0.5, color="#bbb", lw=0.8, ls=":", zorder=1)
+        ax.set_xticks(x); ax.set_xticklabels(XLAB, fontsize=11)
+        ax.set_title(MLAB[model], fontsize=13)
+        ax.set_xlim(-0.5, len(XPOS) - 0.5)
+        ax.tick_params(axis="y", labelsize=11.5)
+    axes[0].set_ylabel("$\\Delta_{\\mathrm{ack}}$", fontsize=12.5)
+    fig.legend(*axes[0].get_legend_handles_labels(), loc="outside upper center",
+               ncol=4, fontsize=11, title="Construction method", title_fontsize=11)
+    mpl_config.save(fig, str(OUT / "fig4e_gpqa_cue_breakdown"), png=True, pdf=True)
     plt.close(fig)
 
 # ============================================================ FIG 5
@@ -309,9 +422,9 @@ def fig5():
     unif = [get("contrastive", model, "gpqa_all", "gpqa", c)[0]["conversion"] for c in CUES]
     axc.bar(x - w/2, spec, w, label="Cue-specific", color=BLUE, edgecolor="#444", zorder=3)
     axc.bar(x + w/2, unif, w, label="Unified (all cues)", color=CLAY, edgecolor="#444", zorder=3)
-    axc.set_xticks(x); axc.set_xticklabels([CLAB[c] for c in CUES], fontsize=8)
-    axc.set_ylabel("Conversion rate"); axc.set_title("Across cues (GPQA)", fontsize=10)
-    axc.legend(fontsize=8, loc="best"); axc.set_ylim(0, 0.65)
+    axc.set_xticks(x); axc.set_xticklabels([CLAB[c] for c in CUES], fontsize=9)
+    axc.set_ylabel("Conversion rate"); axc.set_title("Across cues (GPQA)", fontsize=11.5)
+    axc.legend(fontsize=9, loc="best"); axc.set_ylim(0, 0.65)
     # datasets
     scen = {"bbh": "stanford_bbh", "gpqa": "gpqa_stanford", "mmlu": "stanford_mmlu"}
     xd = np.arange(len(DS))
@@ -319,9 +432,9 @@ def fig5():
     unifd = [get("contrastive", model, "stanford_all", d, "stanford")[0]["conversion"] for d in DS]
     axd.bar(xd - w/2, specd, w, label="Dataset-specific", color=BLUE, edgecolor="#444", zorder=3)
     axd.bar(xd + w/2, unifd, w, label="Unified (all datasets)", color=CLAY, edgecolor="#444", zorder=3)
-    axd.set_xticks(xd); axd.set_xticklabels([DLAB[d] for d in DS], fontsize=8)
-    axd.set_title("Across datasets (Stanford cue)", fontsize=10)
-    axd.legend(fontsize=8, loc="best"); axd.set_ylim(0, 0.9)
+    axd.set_xticks(xd); axd.set_xticklabels([DLAB[d] for d in DS], fontsize=9)
+    axd.set_title("Across datasets (Stanford cue)", fontsize=11.5)
+    axd.legend(fontsize=9, loc="best"); axd.set_ylim(0, 0.9)
     # figure title removed; caption is in the LaTeX \caption
     mpl_config.save(fig, str(OUT / "fig5_unified_vs_specific"), png=True)
     plt.close(fig)
@@ -337,9 +450,9 @@ def fig5_delta():
     axc.bar(x - w/2, spec, w, yerr=spec_ci, label="Cue-specific", color=TEAL, edgecolor="#444", zorder=3, error_kw=ekw)
     axc.bar(x + w/2, unif, w, yerr=unif_ci, label="Unified (all cues)", color=RED, edgecolor="#444", zorder=3, error_kw=ekw)
     axc.axhline(0, color="#444", lw=0.9, zorder=2)
-    axc.set_xticks(x); axc.set_xticklabels([CLAB[c] for c in CUES], fontsize=8)
-    axc.set_ylabel("$\\Delta_{\\mathrm{ack}}$"); axc.set_title("Across cues (GPQA)", fontsize=10)
-    axc.legend(fontsize=8, loc="best"); axc.set_ylim(-0.10, 0.32)
+    axc.set_xticks(x); axc.set_xticklabels([CLAB[c] for c in CUES], fontsize=9)
+    axc.set_ylabel("$\\Delta_{\\mathrm{ack}}$"); axc.set_title("Across cues (GPQA)", fontsize=11.5)
+    axc.legend(fontsize=9, loc="best"); axc.set_ylim(-0.10, 0.32)
     # datasets
     scen = {"bbh": "stanford_bbh", "gpqa": "gpqa_stanford", "mmlu": "stanford_mmlu"}
     xd = np.arange(len(DS))
@@ -348,14 +461,17 @@ def fig5_delta():
     axd.bar(xd - w/2, specd, w, yerr=specd_ci, label="Dataset-specific", color=TEAL, edgecolor="#444", zorder=3, error_kw=ekw)
     axd.bar(xd + w/2, unifd, w, yerr=unifd_ci, label="Unified (all datasets)", color=RED, edgecolor="#444", zorder=3, error_kw=ekw)
     axd.axhline(0, color="#444", lw=0.9, zorder=2)
-    axd.set_xticks(xd); axd.set_xticklabels([DLAB[d] for d in DS], fontsize=8)
-    axd.set_title("Across datasets (Stanford cue)", fontsize=10)
-    axd.legend(fontsize=8, loc="best"); axd.set_ylim(-0.10, 0.45)
+    axd.set_xticks(xd); axd.set_xticklabels([DLAB[d] for d in DS], fontsize=9)
+    axd.set_title("Across datasets (Stanford cue)", fontsize=11.5)
+    axd.legend(fontsize=9, loc="best"); axd.set_ylim(-0.10, 0.45)
     # figure title removed; caption is in the LaTeX \caption
     mpl_config.save(fig, str(OUT / "fig5b_unified_vs_specific_delta"), png=True)
     plt.close(fig)
 
-for f in (fig1, fig2, fig2_delta, fig3, fig3_delta, fig4, fig4_delta, fig5, fig5_delta):
+# Only the figures the paper includes are regenerated; the others (fig1, fig2,
+# fig3, fig4, fig4b, fig4c, fig5, fig5b) are retired from the paper and their
+# functions are kept for reference but not run.
+for f in (fig2_delta, fig3_delta, fig4_delta_model_dataset_method, fig4_gpqa_cue_breakdown):
     f()
     print(f"done {f.__name__}")
 print(f"\nFigures written to {OUT}")

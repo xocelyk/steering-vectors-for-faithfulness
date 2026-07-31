@@ -18,8 +18,10 @@ matched unsteered baselines.
   injected cues from Meek et al. — a Stanford-professor appeal, an XML metadata
   block, a grader-hacking hint, and an insider-information tip (`stanford`,
   `xml`, `grader`, `insider` in output paths). Scenarios vary the cue on GPQA
-  and the dataset on the Stanford cue; each keeps only cued-adopted items,
-  split ~330 train / 160 test with a fixed seed.
+  and the dataset on the Stanford cue; each keeps the items whose cued rollout
+  is non-degenerate (with no conditioning on whether the model follows the
+  cue), split ~67/33 train/test with a fixed seed (129--165 test items per
+  scenario).
 - **Four vector constructions**, one direction per scenario, all under
   `experiments/transfer/vectors/`:
   | Paper name | Code / vectors path |
@@ -32,8 +34,11 @@ matched unsteered baselines.
   stream at every generated token, at the scenario's probe-selected layer
   (`generate_steered_traces.py`; α-sweep via `run_steered_queue.sh`).
 - **Scoring:** greedy decoding (vLLM); a `gpt-5-nano` judge labels cue
-  acknowledgment and extracts the answer (`batch_scoring.py`); linear probes
-  select layers (`run_transfer_probes.py`).
+  acknowledgment and degeneracy and extracts the final-answer letter
+  (`batch_scoring.py`); accuracy and cue use are computed programmatically
+  from the extracted letter (`figures/scoring.py` — the judge's own
+  correctness verdict is not used); linear probes select layers
+  (`run_transfer_probes.py`).
 
 The main pipeline lives in **`experiments/transfer/`**; the `run_*.sh` scripts
 orchestrate it across GPUs. `experiments/phase1/`–`phase4/` are the earlier
@@ -49,15 +54,20 @@ for completeness but are not what the paper reports.
 
 | Artifact | Script |
 |---|---|
-| Cross-cue Δ-acknowledgment (fig. 2b) | `make_figures.py` |
-| Cross-dataset Δ (fig. 3b) | `make_figures.py` |
-| Method comparison Δ (fig. 4b) | `make_figures.py` |
-| Cross-cue cosine by layer (fig. 6) | `crosscue_cosine.py` |
-| Probe AUROC by dataset (fig. 8b) | `probe_auc.py` |
-| α-robustness | `alpha_robustness.py` |
+| Matched Δ-acknowledgment by model, dataset, and method (`fig4d`) | `make_figures.py` |
+| Cross-cue / cross-dataset transfer heatmaps (`fig2b`, `fig3b`) | `make_figures.py` |
+| GPQA per-cue breakdown (`fig4e`) | `make_figures.py` |
+| Transfer vs. setting steerability figure | `transfer_vs_selfeffect.py` |
+| Split-half transfer control table | `splithalf_transfer.py` |
+| α-robustness figure | `alpha_robustness.py` |
+| Gemma-12B per-dataset α table | `g12_alpha_table.py` |
+| Probe AUROC figure and table (`fig8b`) | `probe_auc.py` |
+| Probe AUROC vs. Δ-acknowledgment (`fig8c`) | `probe_auc_vs_delta.py` |
 | Baseline accuracy table | `baseline_accuracy.py` |
-| Acknowledgment×use joint table | `cue_ack_following.py` |
-| Gemma-12B α table | `g12_alpha_table.py` |
+| Per-scenario steering outcomes table | `layer_tables.py` |
+| Cue use / hidden cue use tables | `ack_given_use.py`, `cue_ack_following.py`, `ackuse_2x2_by_dataset.py` |
+| Cosine tables (cross-cue, cross-dataset, cross-method) | `native_cosine.py`, `vector_geometry.py` |
+| Synthetic-vector cosine by layer (`fig6`) | `crosscue_cosine.py` |
 | Cue-reliance proxy validation | `reliance_proxy.py` |
 
 `aggregate.py` distills the scored runs into `figures/agg.json` (committed), so

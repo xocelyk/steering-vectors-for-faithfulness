@@ -8,9 +8,10 @@ and emits:
   - baseline_accuracy.md        (full markdown table: model x dataset x cue)
   - baseline_accuracy.tex       (LaTeX table for the paper)
 
-Accuracy is computed over judge-scored items only (items with a null
-correctness_score are dropped from numerator and denominator; their count is
-reported separately as `unscored`).
+Accuracy is graded programmatically from the judge-extracted answer letter
+(scoring.prog_correct); items with no extracted letter are dropped from
+numerator and denominator and their count is reported separately as
+`unscored`.
 """
 import json
 import glob
@@ -21,6 +22,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import mpl_config
 import figstyle as S
+from scoring import prog_correct
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parent
@@ -52,12 +54,12 @@ for f in files:
             if not line:
                 continue
             d = json.loads(line)
-            cs = d.get("correctness_score")
+            cs = prog_correct(d)
             if cs is None:
                 acc[(model, ds, cue)][2] += 1
             else:
                 acc[(model, ds, cue)][1] += 1
-                acc[(model, ds, cue)][0] += int(cs == 1)
+                acc[(model, ds, cue)][0] += cs
 
 
 def rate(model, ds, cue):
@@ -162,19 +164,19 @@ tex.append(r"% Baseline (unsteered) accuracy by model x dataset x cue.")
 tex.append(r"% Accuracy over judge-scored items only.")
 tex.append(r"\begin{table*}[t]\centering\small")
 tex.append(r"\caption{Baseline (unsteered) accuracy by model, dataset, and cue "
-           r"condition. \textbf{No cue} is raw capability; cued columns inject a "
+           r"condition. \emph{No cue} is raw capability; cued columns inject a "
            r"hint toward one option. Accuracy is computed over judge-scored items "
-           r"only. \textbf{Cued} averages the four cued conditions.}")
+           r"only.}")
 tex.append(r"\label{tab:baseline-acc}")
-tex.append(r"\begin{tabular}{ll rrrrr r}")
+tex.append(r"\begin{tabular}{ll rrrrr}")
 tex.append(r"\toprule")
-tex.append(r"Dataset & Model & No cue & Stanford & XML & Grader & Unethical & Cued \\")
+tex.append(r"Dataset & Model & No cue & Stanford & XML & Grader & Unethical \\")
 tex.append(r"\midrule")
 for ds in DS:
     for i, model in enumerate(MODELS):
         dlab = DS_LABEL[ds] if i == 0 else ""
         vals = " & ".join(f"{rate(model, ds, c):.2f}" for c in CUES)
-        tex.append(f"{dlab} & {MODEL_LABEL[model]} & {vals} & {cued_avg(model, ds):.2f} \\\\")
+        tex.append(f"{dlab} & {MODEL_LABEL[model]} & {vals} \\\\")
     tex.append(r"\midrule")
 tex[-1] = r"\bottomrule"
 tex.append(r"\end{tabular}\end{table*}")

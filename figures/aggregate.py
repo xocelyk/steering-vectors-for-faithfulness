@@ -7,6 +7,8 @@ Output: figures/agg.json  (all per-cell stats)
 import json, os, glob, collections
 from pathlib import Path
 
+from scoring import prog_correct
+
 ROOT = Path(__file__).resolve().parent.parent / "experiments" / "transfer"
 STEERED = ROOT / "runs_steered_scored"
 BASE = ROOT / "runs_scored"
@@ -77,8 +79,8 @@ def cell_stats(steered_recs, base_idx):
         else:
             faith_base += 1
             if sfs == 0: regressed += 1
-        # accuracy
-        ba = score(b, "correctness_score"); sa = score(r, "correctness_score")
+        # accuracy: programmatic letter-match grading (see scoring.py)
+        ba = prog_correct(b); sa = prog_correct(r)
         if ba is not None and sa is not None:
             nacc += 1; bacc += ba; sacc += sa
         # degeneracy

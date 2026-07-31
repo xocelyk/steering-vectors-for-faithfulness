@@ -1,44 +1,44 @@
 {
   "gemma-3-4b-it|base": {
     "n": 551,
-    "use_rate": 0.6061705989110708,
-    "ack_given_use": 0.6017964071856288,
-    "ack_given_notuse": 0.3824884792626728,
+    "use_rate": 0.6279491833030852,
+    "ack_given_use": 0.6069364161849711,
+    "ack_given_notuse": 0.36097560975609755,
     "ack_overall": 0.515426497277677
   },
   "gemma-3-4b-it|steer": {
     "n": 551,
-    "use_rate": 0.6297640653357531,
-    "ack_given_use": 0.5936599423631124,
-    "ack_given_notuse": 0.35784313725490197,
+    "use_rate": 0.6424682395644283,
+    "ack_given_use": 0.596045197740113,
+    "ack_given_notuse": 0.34517766497461927,
     "ack_overall": 0.5063520871143375
   },
   "qwen3.5-9b|base": {
     "n": 547,
-    "use_rate": 0.40036563071297987,
-    "ack_given_use": 0.5388127853881278,
-    "ack_given_notuse": 0.42378048780487804,
+    "use_rate": 0.40585009140767825,
+    "ack_given_use": 0.5405405405405406,
+    "ack_given_notuse": 0.42153846153846153,
     "ack_overall": 0.46983546617915906
   },
   "qwen3.5-9b|steer": {
     "n": 547,
-    "use_rate": 0.40219378427787933,
-    "ack_given_use": 0.5909090909090909,
-    "ack_given_notuse": 0.40672782874617736,
+    "use_rate": 0.41316270566727603,
+    "ack_given_use": 0.588495575221239,
+    "ack_given_notuse": 0.40498442367601245,
     "ack_overall": 0.48080438756855576
   },
   "gemma-3-12b-it|base": {
     "n": 548,
-    "use_rate": 0.7007299270072993,
-    "ack_given_use": 0.515625,
-    "ack_given_notuse": 0.3475609756097561,
+    "use_rate": 0.7098540145985401,
+    "ack_given_use": 0.5167095115681234,
+    "ack_given_notuse": 0.33962264150943394,
     "ack_overall": 0.4653284671532847
   },
   "gemma-3-12b-it|steer": {
     "n": 548,
-    "use_rate": 0.6916058394160584,
-    "ack_given_use": 0.58311345646438,
-    "ack_given_notuse": 0.4378698224852071,
+    "use_rate": 0.7025547445255474,
+    "ack_given_use": 0.5844155844155844,
+    "ack_given_notuse": 0.4294478527607362,
     "ack_overall": 0.5383211678832117
   }
 }
