@@ -95,6 +95,19 @@ uv pip install -e third_party/measuring_cot_monitorability
 cp .env.example .env      # then fill in HF_TOKEN and a judge API key
 ```
 
+`uv sync` resolves the full GPU stack and installs only on Linux with CUDA.
+To regenerate the paper's figures and tables from the committed
+`figures/agg.json` and artifacts on any platform, a minimal environment
+suffices:
+
+```bash
+uv venv && uv pip install matplotlib numpy
+.venv/bin/python figures/make_figures.py    # or the other figures/*.py
+```
+
+(`figures/layer_tables.py` additionally needs `torch` to read the trained
+vectors; scripts that glob `runs_scored/` need the regenerated run data.)
+
 This project depends on
 [measuring_cot_monitorability](https://github.com/ajmeek/measuring_cot_monitorability)
 (the cue system, scorers, and benchmark data), pinned as a git submodule under
