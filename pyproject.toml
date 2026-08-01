@@ -6,18 +6,13 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "bitsandbytes>=0.49.2",
-    "datasets",
     "huggingface-hub>=1.14.0",
-    "inspect-ai",
-    "jinja2",
     "matplotlib>=3.10.9",
     "mdmm",
     "nnsight==0.7.0",
     "numpy",
     "openai",
     "python-dotenv",
-    "scikit-learn",
-    "scipy",
     "torch",
     "tqdm",
     "transformers",

@@ -2,7 +2,7 @@
 
 For each cell with a saved `mean_all_response.pt`:
   1. Split rows into train/test using
-     `experiments/phase4/splits/{dataset}_{train,test}_task_ids.txt`.
+     `experiments/transfer/splits/` task-id files.
   2. For every saved layer, fit a ridge linear probe on train rows (with
      per-feature normalization computed on train), score train and test rows,
      compute ROC-AUC for each.

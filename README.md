@@ -41,10 +41,7 @@ matched unsteered baselines.
   (`run_transfer_probes.py`).
 
 The main pipeline lives in **`experiments/transfer/`**; the `run_*.sh` scripts
-orchestrate it across GPUs. `experiments/phase1/`–`phase4/` are the earlier
-exploratory experiments this grew out of (LDA bias vectors, verbosity steering,
-and optimization-based vectors on DeepSeek-R1-Distill-Llama-8B); they are kept
-for completeness but are not what the paper reports.
+orchestrate it across GPUs.
 
 ## Reproducing the paper's figures and tables
 
@@ -118,12 +115,10 @@ checkout elsewhere.
 
 ```
 src/steering_vectors_for_faithfulness/config.py   # central paths, model ids, HF/env helpers
-src/qa/, src/grading/, src/prompts/, src/steering/ # shared package code
 
 experiments/
   transfer/  # THE PAPER'S EXPERIMENT: build vectors (4 methods), steer, judge, probe
              #   run_*.sh orchestrate; vectors/ holds the trained directions (.pt)
-  phase1-4/  # preliminary experiments on DeepSeek-R1-Distill (not in the paper)
 
 figures/     # regenerates every paper figure/table (generate.sh; agg.json cache)
 third_party/measuring_cot_monitorability/   # git submodule (eval framework + data)
@@ -144,8 +139,8 @@ scenario — see each script's header for flags:
 
 ## License
 
-[MIT](LICENSE). Figure fonts: CMU Sans Serif (CM Unicode) and Google Sans
-Code, both SIL OFL 1.1 (see `figures/fonts/README.md`).
+[MIT](LICENSE). Figure font: CMU Sans Serif (CM Unicode), SIL OFL 1.1
+(see `figures/fonts/README.md`).
 
 ## Built on
 

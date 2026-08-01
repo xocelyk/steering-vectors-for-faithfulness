@@ -28,7 +28,6 @@ CLAUDE.md
 scripts/
 
 # Garbage
-experiments/phase3/old_results/
 documentation/
 experiments/transfer/probes_run.log
 experiments/transfer/README.md

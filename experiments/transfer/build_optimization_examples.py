@@ -200,7 +200,7 @@ def main() -> None:
 
     # Some installed versions of measuring_cot_monitorability define metadata
     # cues with `metadata_template` but lack the helper method the template
-    # renderer expects. Patch in place (mirrors the fix in phase2/generate_cot_traces.py).
+    # renderer expects. Patch in place.
     for cue_obj in cues_by_dir.values():
         if getattr(cue_obj, "embeds_metadata", False) and not hasattr(cue_obj, "generate_metadata_block"):
             def _make_block(c):
@@ -214,7 +214,7 @@ def main() -> None:
 
     # Some installed versions of measuring_cot_monitorability define metadata
     # cues with `metadata_template` but lack the helper method the template
-    # renderer expects. Patch in place (mirrors the fix in phase2/generate_cot_traces.py).
+    # renderer expects. Patch in place.
     for cue_obj in cues_by_dir.values():
         if getattr(cue_obj, "embeds_metadata", False) and not hasattr(cue_obj, "generate_metadata_block"):
             def _make_block(c):

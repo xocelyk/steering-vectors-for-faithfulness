@@ -54,6 +54,3 @@ new figure script so the set stays consistent.
 
 What each figure/table shows is documented in the paper repo's
 `artifacts/README.md` (figure-by-figure notes, metric definitions, caveats).
-
-`report.py` and `analyze_verbosity_dist.py` are ad-hoc analysis tools, not
-part of the artifact pipeline.

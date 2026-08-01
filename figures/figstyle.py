@@ -23,9 +23,8 @@ mpl_config.use("default")
 mpl_config.use(mpl_config.get_theme("default").derive("default_white", bg="#FFFFFF"))
 
 # --- FONT SWITCH: FIG_FONT env, like the FIG_PALETTE switch below ---
-#   current -- Google Sans Code (status quo, set by mpl_config; byte-identical output)
-#   cmu     -- CMU Sans Serif (Computer Modern sans companion; matches the paper's
-#              LaTeX look) + mathtext "cm" so $\Delta$/$\alpha$ render as CM math.
+#   cmu -- CMU Sans Serif (Computer Modern sans companion; matches the paper's
+#          LaTeX look) + mathtext "cm" so $\Delta$/$\alpha$ render as CM math.
 # Applied AFTER the mpl_config.use() calls above (no figure script calls use()
 # again later, so these rcParams stick for the whole render).
 FONT = os.environ.get("FIG_FONT", "cmu")
@@ -56,8 +55,8 @@ if FONT == "cmu":
         # labels instead of falling back to a mismatched DejaVu glyph
         "axes.unicode_minus": False,
     })
-elif FONT != "current":
-    raise SystemExit(f"FIG_FONT={FONT!r} unknown; pick 'current' or 'cmu'")
+else:
+    raise SystemExit(f"FIG_FONT={FONT!r} unknown; only 'cmu' is supported")
 
 # --- core colors ---
 # NOTE: var names are historical/non-literal. TEAL = the palette's BLUE, GOLD = the

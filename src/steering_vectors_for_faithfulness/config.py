@@ -1,6 +1,6 @@
 """Central configuration for the steering-vectors experiments.
 
-Single source of truth for values that used to be copy-pasted across the phase
+Single source of truth for values that used to be copy-pasted across the
 and transfer scripts: the repo layout, the location of the external
 ``measuring_cot_monitorability`` dependency, default model ids, and Hugging Face
 token/cache setup.

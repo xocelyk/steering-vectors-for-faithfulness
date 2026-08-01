@@ -22,7 +22,6 @@ import argparse
 import gc
 import json
 import os
-import sys
 import time
 from pathlib import Path
 
@@ -30,11 +29,7 @@ import torch
 from dotenv import load_dotenv
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-# Make experiments/phase4 importable so we can use the optimization core.
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
-PHASE4_DIR = PROJECT_ROOT / "experiments" / "phase4"
-if str(PHASE4_DIR) not in sys.path:
-    sys.path.insert(0, str(PHASE4_DIR))
 
 import steering_opt_batched as steering_opt  # noqa: E402
 

@@ -6,24 +6,12 @@ Formatting is approximate by design (the user deprioritized exact styling); the
 actual palette lives in figstyle.py, so colors are faithful. Aspect ratios and
 fonts here are reasonable stand-ins and can be tuned later.
 """
-from pathlib import Path
 import matplotlib
 matplotlib.use("Agg")
-import matplotlib.font_manager as _fm
 import matplotlib.pyplot as plt
 
 _BG = "#FFFFFF"
 
-# Register Google Sans Code (static Regular/Bold/Italic instanced from the
-# variable font; matplotlib only picks up the default 400 weight from a varfont,
-# so bold panel titles need a real static Bold). Fall back silently if the files
-# are absent so the scripts still run on a machine without them.
-_FONT_DIR = Path(__file__).resolve().parent / "fonts"
-for _f in sorted(_FONT_DIR.glob("GoogleSansCode-*.ttf")):
-    try:
-        _fm.fontManager.addfont(str(_f))
-    except Exception:
-        pass
 
 
 class _Theme:
@@ -49,7 +37,7 @@ def use(theme="default"):
         "axes.facecolor": _BG,
         "savefig.facecolor": _BG,
         "font.family": "monospace",
-        "font.monospace": ["Google Sans Code", "DejaVu Sans Mono"],
+        "font.monospace": ["DejaVu Sans Mono"],
         "font.size": 11.5,
         "axes.titlesize": 12.5,
         "axes.titleweight": "bold",
